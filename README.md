@@ -1,2 +1,2 @@
 # VirusSimulation
-Virus Game for Channel Software Engineering Class
+Virus Game for Channel Islands Software Engineering Class
