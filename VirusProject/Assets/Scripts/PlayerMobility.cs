@@ -12,7 +12,7 @@ public class PlayerMobility : MonoBehaviour
 {
 
     //public GameObject katana;
-    //public GameObject wallCheck;
+    public GameObject wallCheck;
     //public GameObject naginata;
     //public GameObject upperTorso;
 
@@ -29,6 +29,11 @@ public class PlayerMobility : MonoBehaviour
     public bool againstWallVertDown = false;
     public bool againstWallHorRight= false;
     public bool againstWallHorLeft = false;
+    public bool againstWallUpRight = false;
+    public bool againstWallUpLeft = false;
+    public bool againstWallDownRight = false;
+    public bool againstWallDownLeft = false;
+
 
     //public bool katanaEnabled = false;
     //public bool naginataEnabled = false;
@@ -55,7 +60,7 @@ public class PlayerMobility : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
-        //wallCheck = GameObject.FindGameObjectWithTag("wallCheck");
+        wallCheck = GameObject.FindGameObjectWithTag("wallCheck");
         actualSpeed = speed;
         //katana.SetActive(false);
 
@@ -63,6 +68,7 @@ public class PlayerMobility : MonoBehaviour
         speedHorLeft = speed;
         speedVertUp = speed;
         speedVertDown = speed;
+
 
         //myAnim = upperTorso.GetComponent<Animator>();
         //myAnim.SetInteger("anims", 0);
@@ -118,7 +124,7 @@ public class PlayerMobility : MonoBehaviour
     {
         //Sets appropriate speed to zero if against a wall. 
 
-        /*
+        
         checkRay();
         if (againstWallVertUp)
         {
@@ -155,8 +161,57 @@ public class PlayerMobility : MonoBehaviour
         {
           speedHorRight = actualSpeed;
         }
-        */
 
+        if(againstWallUpRight)
+        {
+            Debug.Log("Diagonal Up Right is being hit!");
+            speedHorRight = zeroSpeed;
+            speedVertUp = zeroSpeed;
+        }
+        else
+        {
+            speedHorRight = actualSpeed;
+            speedVertUp = actualSpeed;
+        }
+
+        if (againstWallUpLeft)
+        {
+            Debug.Log("Diagonal Up Left is being hit!");
+
+            speedHorLeft = zeroSpeed;
+            speedVertUp = zeroSpeed;
+        }
+        else
+        {
+            speedHorLeft = actualSpeed;
+            speedVertUp = actualSpeed;
+        }
+
+        if (againstWallDownRight)
+        {
+            Debug.Log("Diagonal Down Right is being hit!");
+
+            speedHorRight = zeroSpeed;
+            speedVertDown = zeroSpeed;
+        }
+        else
+        {
+            speedHorRight = actualSpeed;
+            speedVertDown = actualSpeed;
+        }
+
+        if (againstWallDownLeft)
+        {
+            Debug.Log("Diagonal Down Left is being hit!");
+
+            speedHorLeft = zeroSpeed;
+            speedVertDown = zeroSpeed;
+        }
+        else
+        {
+            speedHorLeft = actualSpeed;
+            speedVertDown= actualSpeed;
+        }
 
 
         /*
@@ -186,58 +241,7 @@ public class PlayerMobility : MonoBehaviour
         */
 
         baseMovementWrapper();
-        if(wait2 == false && correctRotation == false)
-        {
-
-
-        
-            if (Input.GetAxis("Horizontal") > 0)
-            {
-
-                var moveHorRight = new Vector3(Input.GetAxis("Horizontal"), 0, 0);
-                transform.position += moveHorRight * speedHorRight * Time.deltaTime;
-                chargeRight = true;
-                chargeLeft = false;
-                chargeDown = false;
-                chargeUp = false;
-            }
-            if (Input.GetAxis("Horizontal") < 0)
-            {
-
-                var moveHorLeft = new Vector3(Input.GetAxis("Horizontal"), 0, 0);
-                transform.position += moveHorLeft * speedHorLeft * Time.deltaTime;
-                chargeRight = false;
-                chargeLeft = true;
-                chargeDown = false;
-                chargeUp = false;
-            }
-
-            if (Input.GetAxis("Vertical") > 0)
-            {
-
-                var moveVertUp = new Vector3(0, Input.GetAxis("Vertical"), 0);
-                transform.position += moveVertUp * speedVertUp * Time.deltaTime;
-                chargeRight = false;
-                chargeLeft = false;
-                chargeDown = false;
-                chargeUp = true;
-            }
-
-            if (Input.GetAxis("Vertical") < 0)
-            {
-
-                var moveVertDown = new Vector3(0, Input.GetAxis("Vertical"), 0);
-                transform.position += moveVertDown * speedVertDown * Time.deltaTime;
-                chargeRight = false;
-                chargeLeft = false;
-                chargeDown = true;
-                chargeUp = false;
-            }
-
-        }
        
-
-
         /*
         if (Input.GetButtonDown("Fire1") && katanaEnabled == true && waitToSlash && waitAnim == false)
         {
@@ -391,7 +395,7 @@ public class PlayerMobility : MonoBehaviour
     
 
     
-    /*
+    
     void checkRay()
     {
         checkWall cW = wallCheck.GetComponent<checkWall>();
@@ -407,8 +411,20 @@ public class PlayerMobility : MonoBehaviour
 
         if (cW.againstWallHorRight == true) againstWallHorRight = true;
         else againstWallHorRight = false;
+
+        if (cW.againstWallUpRight == true) againstWallUpRight = true;
+        else againstWallUpRight = false;
+
+        if (cW.againstWallUpLeft == true) againstWallUpLeft = true;
+        else againstWallUpLeft = false;
+
+        if (cW.againstWallDownRight == true) againstWallDownRight = true;
+        else againstWallDownRight = false;
+
+        if (cW.againstWallDownLeft == true) againstWallDownLeft = true;
+        else againstWallDownLeft = false;
     }
-    */
+    
     
 
 
