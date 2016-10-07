@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000012127207782}
   - 212: {fileID: 212000013196210172}
-  - 61: {fileID: 61000012617760722}
+  - 61: {fileID: 61000010624951458}
   m_Layer: 9
   m_Name: Building
   m_TagString: wall
@@ -35,13 +35,13 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013845027976}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.92, y: -3.47, z: 0}
-  m_LocalScale: {x: 10, y: 10, z: 1}
+  m_LocalPosition: {x: 317, y: 316.4, z: 0}
+  m_LocalScale: {x: 1.1163034, y: 5.581517, z: 0.11163034}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!61 &61000012617760722
+--- !u!61 &61000010624951458
 BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -54,7 +54,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 0.16, y: 0.16}
+  m_Size: {x: 21.83, y: 7.83}
 --- !u!212 &212000013196210172
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -84,7 +84,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: 81289e1800c2bd74d85d186e3cdf6f59, type: 3}
   m_Color: {r: 0.04411763, g: 0.03665656, b: 0.03665656, a: 1}
   m_FlipX: 0
   m_FlipY: 0
