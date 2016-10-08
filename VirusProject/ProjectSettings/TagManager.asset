@@ -7,6 +7,9 @@ TagManager:
   - wallCheck
   - wall
   - A_Points
+  - dest
+  - foodTag
+  - coffeeTag
   layers:
   - Default
   - TransparentFX
