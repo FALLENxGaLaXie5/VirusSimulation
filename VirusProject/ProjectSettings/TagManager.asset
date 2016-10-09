@@ -10,6 +10,12 @@ TagManager:
   - dest
   - foodTag
   - coffeeTag
+  - schoolTag
+  - churchTag
+  - clubTag
+  - frysElectronicsTag
+  - homeTag
+  - gameStopTag
   layers:
   - Default
   - TransparentFX
