@@ -25,7 +25,7 @@ public class simPerson : MonoBehaviour
     };
 
 
-    public Queue<DestSlot> myDestinations = new Queue<DestSlot>();
+    public List<DestSlot> myDestinations = new List<DestSlot>();
     public GameObject[] patrolPoints;
     public string wayPointTrack;
 
@@ -69,6 +69,11 @@ public class simPerson : MonoBehaviour
             return (Dest == des.Dest) && (WaitTime == des.WaitTime);
         }
 
+        public override string ToString()
+        {
+            return "DestSlot: " + Dest + " - Wait Time: " + WaitTime;
+        }
+
         public override int GetHashCode()
         {
             return Dest ^ WaitTime;
@@ -92,12 +97,15 @@ public class simPerson : MonoBehaviour
     {
         patrolPoints = GameObject.FindGameObjectsWithTag(wayPointTrack);
         wayPointNumber = Random.Range(0, patrolPoints.Length);
+        myDestinations.Clear();
     }
     void Awake()
     {
         gameManagerInstance = GameManager.instance;
         myType = Random.Range((int)PeopleType.Nerd, (int)PeopleType.Partier);
-        myDestinations.Clear();
+        //test function
+        //myType = 0;
+        Debug.Log("My type is: " + myType);
         destCapacity = 6;
     }
 
@@ -105,17 +113,20 @@ public class simPerson : MonoBehaviour
     {
         AILerp lerp = gameObject.GetComponent<AILerp>();
         lerp.enabled = true;
-        allocateDestinations();
+        if(myDestinations.Count < 6)
+        {
+            allocateDestinations();
+        }
         Patrol();
      }
 
     public void Patrol()
 	{
 		//Classic Patrol Behaviour
-        if(myDestinations.Peek() != null)
-        {
-            DestSlot nextDest = myDestinations.Dequeue();
-        }
+        //if(myDestinations.Peek() != null)
+        //{
+        //    DestSlot nextDest = myDestinations.Dequeue();
+        //}
 		GameObject currentWaypoint = patrolPoints [wayPointNumber];
 		AILerp lerp = gameObject.GetComponent<AILerp> ();
 		lerp.speed = speed;
@@ -133,27 +144,34 @@ public class simPerson : MonoBehaviour
 		}
 	}
 
+    //Nerd, WorkAHolic, Parent, Child, HabitualEater, Partier
     void allocateDestinations()
     {
         switch(myType)
         {
-            case (int)PeopleType.Nerd:
+            case 0:
                 nerdDestiny();
+                Debug.Log("Allocating for " + PeopleType.Nerd);
                 break;
-            case (int)PeopleType.WorkAHolic:
+            case 1:
                 workerDestiny();
+                Debug.Log("Allocating for " + PeopleType.WorkAHolic);
                 break;
-            case (int)PeopleType.Child:
+            case 3:
                 childDestiny();
+                Debug.Log("Allocating for " + PeopleType.Child);
                 break;
-            case (int)PeopleType.Parent:
+            case 2:
                 parentDestiny();
+                Debug.Log("Allocating for " + PeopleType.Parent);
                 break;
-            case (int)PeopleType.HabitualEater:
+            case 4:
                 eaterDestiny();
+                Debug.Log("Allocating for " + PeopleType.HabitualEater);
                 break;
-            case (int)PeopleType.Partier:
+            case 5:
                 partyDestiny();
+                Debug.Log("Allocating for " + PeopleType.Partier);
                 break;
             default:
 
@@ -161,435 +179,228 @@ public class simPerson : MonoBehaviour
         }
     }
 
-    //Club, Gamestop, Frys, Food, Church, Coffee, Home
+    void checkToAddDest(DestSlot newDest)
+    {
+        if (myDestinations.Count != 0)
+        {
+            if (myDestinations[myDestinations.Count - 1].Equals(newDest))
+            {
+                return;
+            }
+            else
+            {
+                myDestinations.Add(newDest);
+                Debug.Log("My Destination is: " + newDest.ToString());
+            }
+        }
+        else
+        {
+            myDestinations.Add(newDest);
+            Debug.Log("My Destination is: " + newDest.ToString());
+        }
+    }
+    
     void nerdDestiny()
     {
-        if(myDestinations.Count < 1)
-        {
-            int newDestNum = Random.Range(0, 4);
-            int waitTime = 0;
-            switch(newDestNum)
-            {
-                case 0:
-                    newDestNum = (int)Destination.Gamestop;
-                    waitTime = 4;
-                    break;
-                case 1:
-                    newDestNum = (int)Destination.Frys;
-                    waitTime = 5;
-                    break;
-                case 2:
-                    newDestNum = (int)Destination.Food;
-                    waitTime = 8;
-                    break;
-                case 3:
-                    newDestNum = (int)Destination.Home;
-                    waitTime = 40;
-                    break;
-            }
-            myDestinations.Enqueue(new DestSlot(newDestNum, waitTime));
-        }
-        while(myDestinations.Count < 6)
-        {
-            int newDestNum = Random.Range(0, 6);
+            int newDestNum = Random.Range(0, 22);
             int waitTime = 0;
             switch (newDestNum)
             {
-                case 0:
+                case 0: case 1: case 2: case 12:case 13:case 14: 
                     newDestNum = (int)Destination.Home;
                     waitTime = 40;
                     break;
-                case 1:
-                    newDestNum = (int)Destination.Home;
-                    waitTime = 40;
-                    break;
-                case 2:
+                case 3: case 4: case 5: case 15: case 16: case 17:
                     newDestNum = (int)Destination.Food;
                     waitTime = 8;
                     break;
-                case 3:
-                    newDestNum = (int)Destination.Home;
-                    waitTime = 40;
-                    break;
-                case 4:
+                case 6: case 7: case 8: case 9: case 10: case 11:
                     newDestNum = (int)Destination.Gamestop;
-                    waitTime = 4;
+                    waitTime = 15;
                     break;
-                case 5:
-                    newDestNum = (int)Destination.Frys;
+                case 18:
+                    newDestNum = (int)Destination.Coffee;
                     waitTime = 5;
                     break;
+                case 19: case 20:
+                    newDestNum = (int)Destination.Frys;
+                    waitTime = 7;
+                    break;
+                case 21:
+                    newDestNum = (int)Destination.School;
+                    waitTime = 30;
+                    break;
             }
-            DestSlot newDest = new DestSlot(newDestNum, waitTime);
-            if (!myDestinations.Contains(newDest))
-            {
-                myDestinations.Enqueue(newDest);
-            }
-        }
+            checkToAddDest(new DestSlot(newDestNum, waitTime));
     }
+
+    
     void workerDestiny()
     {
-        if (myDestinations.Count < 1)
+        int newDestNum = Random.Range(0, 22);
+        int waitTime = 0;
+        switch (newDestNum)
         {
-            int newDestNum = Random.Range(0, 4);
-            int waitTime = 0;
-            switch (newDestNum)
-            {
-                case 0:
-                    newDestNum = (int)Destination.Frys;
-                    waitTime = 40;
-                    break;
-                case 1:
-                    newDestNum = (int)Destination.Frys;
-                    waitTime = 40;
-                    break;
-                case 2:
-                    newDestNum = (int)Destination.Food;
-                    waitTime = 8;
-                    break;
-                case 3:
-                    newDestNum = (int)Destination.Home;
-                    waitTime = 40;
-                    break;
-            }
-            myDestinations.Enqueue(new DestSlot(newDestNum, waitTime));
+            case 0:case 1:case 2:case 12:case 13:case 14:
+                newDestNum = (int)Destination.Frys;
+                waitTime = 40;
+                break;
+            case 3:case 4:case 5:case 15:case 16:case 17:
+                newDestNum = (int)Destination.Coffee;
+                waitTime = 8;
+                break;
+            case 6:case 7:case 8:case 9:case 10:case 11:
+                newDestNum = (int)Destination.Home;
+                waitTime = 15;
+                break;
+            case 18:
+                newDestNum = (int)Destination.Coffee;
+                waitTime = 5;
+                break;
+            case 19:case 20:
+                newDestNum = (int)Destination.Food;
+                waitTime = 7;
+                break;
+            case 21:
+                newDestNum = (int)Destination.School;
+                waitTime = 30;
+                break;
         }
-        while (myDestinations.Count < 6)
-        {
-            int newDestNum = Random.Range(0, 6);
-            int waitTime = 0;
-            switch (newDestNum)
-            {
-                case 0:
-                    newDestNum = (int)Destination.Home;
-                    waitTime = 40;
-                    break;
-                case 1:
-                    newDestNum = (int)Destination.Home;
-                    waitTime = 40;
-                    break;
-                case 2:
-                    newDestNum = (int)Destination.Food;
-                    waitTime = 8;
-                    break;
-                case 3:
-                    newDestNum = (int)Destination.Home;
-                    waitTime = 40;
-                    break;
-                case 4:
-                    newDestNum = (int)Destination.Frys;
-                    waitTime = 40;
-                    break;
-                case 5:
-                    newDestNum = (int)Destination.Frys;
-                    waitTime = 40;
-                    break;
-                case 6:
-                    newDestNum = (int)Destination.Coffee;
-                    waitTime = 50;
-                    break;
-                case 7:
-                    newDestNum = (int)Destination.Coffee;
-                    waitTime = 50;
-                    break;
-            }
-            DestSlot newDest = new DestSlot(newDestNum, waitTime);
-            if (!myDestinations.Contains(newDest))
-            {
-                myDestinations.Enqueue(newDest);
-            }
-        }
+        checkToAddDest(new DestSlot(newDestNum, waitTime));
     }
+
+
     void childDestiny()
     {
-        if (myDestinations.Count < 1)
+        int newDestNum = Random.Range(0, 22);
+        int waitTime = 0;
+        switch (newDestNum)
         {
-            int newDestNum = Random.Range(0, 4);
-            int waitTime = 0;
-            switch (newDestNum)
-            {
-                case 0:
-                    newDestNum = (int)Destination.Gamestop;
-                    waitTime = 3;
-                    break;
-                case 1:
-                    newDestNum = (int)Destination.Frys;
-                    waitTime = 2;
-                    break;
-                case 2:
-                    newDestNum = (int)Destination.Food;
-                    waitTime = 8;
-                    break;
-                case 3:
-                    newDestNum = (int)Destination.Home;
-                    waitTime = 40;
-                    break;
-            }
-            myDestinations.Enqueue(new DestSlot(newDestNum, waitTime));
+            case 0:case 1:case 2:case 12:case 13:case 14:
+                newDestNum = (int)Destination.School;
+                waitTime = 40;
+                break;
+            case 3:case 4:case 5:case 15:case 16:case 17:
+                newDestNum = (int)Destination.Home;
+                waitTime = 20;
+                break;
+            case 6:case 7:case 8:case 9:case 10:case 11:
+                newDestNum = (int)Destination.Food;
+                waitTime = 15;
+                break;
+            case 18:
+                newDestNum = (int)Destination.Gamestop;
+                waitTime = 5;
+                break;
+            case 19:case 20:
+                newDestNum = (int)Destination.Club;
+                waitTime = 7;
+                break;
+            case 21:
+                newDestNum = (int)Destination.School;
+                waitTime = 30;
+                break;
         }
-        while (myDestinations.Count < 6)
-        {
-            int newDestNum = Random.Range(0, 8);
-            int waitTime = 0;
-            switch (newDestNum)
-            {
-                case 0:
-                    newDestNum = (int)Destination.Home;
-                    waitTime = 40;
-                    break;
-                case 1:
-                    newDestNum = (int)Destination.Home;
-                    waitTime = 40;
-                    break;
-                case 2:
-                    newDestNum = (int)Destination.Food;
-                    waitTime = 8;
-                    break;
-                case 3:
-                    newDestNum = (int)Destination.Food;
-                    waitTime = 8;
-                    break;
-                case 4:
-                    newDestNum = (int)Destination.Gamestop;
-                    waitTime = 3;
-                    break;
-                case 5:
-                    newDestNum = (int)Destination.Church;
-                    waitTime = 5;
-                    break;
-                case 6:
-                    newDestNum = (int)Destination.School;
-                    waitTime = 40;
-                    break;
-                case 7:
-                    newDestNum = (int)Destination.School;
-                    waitTime = 40;
-                    break;
-            }
-            DestSlot newDest = new DestSlot(newDestNum, waitTime);
-            if (!myDestinations.Contains(newDest))
-            {
-                myDestinations.Enqueue(newDest);
-            }
-        }
+        checkToAddDest(new DestSlot(newDestNum, waitTime));
     }
     void parentDestiny()
     {
-        if (myDestinations.Count < 1)
+        int newDestNum = Random.Range(0, 22);
+        int waitTime = 0;
+        switch (newDestNum)
         {
-            int newDestNum = Random.Range(0, 4);
-            int waitTime = 0;
-            switch (newDestNum)
-            {
-                case 0:
-                    newDestNum = (int)Destination.Church;
-                    waitTime = 3;
-                    break;
-                case 1:
-                    newDestNum = (int)Destination.Frys;
-                    waitTime = 2;
-                    break;
-                case 2:
-                    newDestNum = (int)Destination.Food;
-                    waitTime = 8;
-                    break;
-                case 3:
-                    newDestNum = (int)Destination.Home;
-                    waitTime = 40;
-                    break;
-            }
-            myDestinations.Enqueue(new DestSlot(newDestNum, waitTime));
+            case 0:case 1:case 2:case 12:case 13:case 14:
+                newDestNum = (int)Destination.Frys;
+                waitTime = 40;
+                break;
+            case 3:case 4:case 5:case 15:case 16:case 17:
+                newDestNum = (int)Destination.Home;
+                waitTime = 20;
+                break;
+            case 6:case 7:case 8:case 9:case 10:case 11:
+                newDestNum = (int)Destination.Food;
+                waitTime = 15;
+                break;
+            case 18:
+                newDestNum = (int)Destination.Coffee;
+                waitTime = 5;
+                break;
+            case 19:case 20:
+                newDestNum = (int)Destination.Church;
+                waitTime = 7;
+                break;
+            case 21:
+                newDestNum = (int)Destination.School;
+                waitTime = 30;
+                break;
         }
-        while (myDestinations.Count < 6)
-        {
-            int newDestNum = Random.Range(0, 8);
-            int waitTime = 0;
-            switch (newDestNum)
-            {
-                case 0:
-                    newDestNum = (int)Destination.Home;
-                    waitTime = 40;
-                    break;
-                case 1:
-                    newDestNum = (int)Destination.Home;
-                    waitTime = 40;
-                    break;
-                case 2:
-                    newDestNum = (int)Destination.Food;
-                    waitTime = 8;
-                    break;
-                case 3:
-                    newDestNum = (int)Destination.Food;
-                    waitTime = 8;
-                    break;
-                case 4:
-                    newDestNum = (int)Destination.Gamestop;
-                    waitTime = 3;
-                    break;
-                case 5:
-                    newDestNum = (int)Destination.Church;
-                    waitTime = 3;
-                    break;
-                case 6:
-                    newDestNum = (int)Destination.Coffee;
-                    waitTime = 20;
-                    break;
-                case 7:
-                    newDestNum = (int)Destination.Coffee;
-                    waitTime = 20;
-                    break;
-            }
-            DestSlot newDest = new DestSlot(newDestNum, waitTime);
-            if (!myDestinations.Contains(newDest))
-            {
-                myDestinations.Enqueue(newDest);
-            }
-        }
+        checkToAddDest(new DestSlot(newDestNum, waitTime));
     }
     void eaterDestiny()
     {
-        if (myDestinations.Count < 1)
+        int newDestNum = Random.Range(0, 22);
+        int waitTime = 0;
+        switch (newDestNum)
         {
-            int newDestNum = Random.Range(0, 4);
-            int waitTime = 0;
-            switch (newDestNum)
-            {
-                case 0:
-                    newDestNum = (int)Destination.Food;
-                    waitTime = 10;
-                    break;
-                case 1:
-                    newDestNum = (int)Destination.Food;
-                    waitTime = 10;
-                    break;
-                case 2:
-                    newDestNum = (int)Destination.Food;
-                    waitTime = 10;
-                    break;
-                case 3:
-                    newDestNum = (int)Destination.Home;
-                    waitTime = 40;
-                    break;
-            }
-            myDestinations.Enqueue(new DestSlot(newDestNum, waitTime));
+            case 0:case 1:case 2:case 12:case 13:case 14:
+                newDestNum = (int)Destination.Food;
+                waitTime = 40;
+                break;
+            case 3:case 4:case 5:case 15:case 16:case 17:
+                newDestNum = (int)Destination.Home;
+                waitTime = 40;
+                break;
+            case 6:case 7:case 8:case 9:case 10:case 11:
+                newDestNum = (int)Destination.Food;
+                waitTime = 40;
+                break;
+            case 18:
+                newDestNum = (int)Destination.Coffee;
+                waitTime = 5;
+                break;
+            case 19:case 20:
+                newDestNum = (int)Destination.Food;
+                waitTime = 40;
+                break;
+            case 21:
+                newDestNum = (int)Destination.School;
+                waitTime = 30;
+                break;
         }
-        while (myDestinations.Count < 6)
-        {
-            int newDestNum = Random.Range(0, 8);
-            int waitTime = 0;
-            switch (newDestNum)
-            {
-                case 0:
-                    newDestNum = (int)Destination.Home;
-                    waitTime = 40;
-                    break;
-                case 1:
-                    newDestNum = (int)Destination.Home;
-                    waitTime = 40;
-                    break;
-                case 2:
-                    newDestNum = (int)Destination.Food;
-                    waitTime = 10;
-                    break;
-                case 3:
-                    newDestNum = (int)Destination.Food;
-                    waitTime = 10;
-                    break;
-                case 4:
-                    newDestNum = (int)Destination.Gamestop;
-                    waitTime = 3;
-                    break;
-                case 5:
-                    newDestNum = (int)Destination.Church;
-                    waitTime = 3;
-                    break;
-                case 6:
-                    newDestNum = (int)Destination.Coffee;
-                    waitTime = 20;
-                    break;
-                case 7:
-                    newDestNum = (int)Destination.Coffee;
-                    waitTime = 20;
-                    break;
-            }
-            DestSlot newDest = new DestSlot(newDestNum, waitTime);
-            if (!myDestinations.Contains(newDest))
-            {
-                myDestinations.Enqueue(newDest);
-            }
-        }
+        checkToAddDest(new DestSlot(newDestNum, waitTime));
     }
     void partyDestiny()
     {
-        if (myDestinations.Count < 1)
+        int newDestNum = Random.Range(0, 22);
+        int waitTime = 0;
+        switch (newDestNum)
         {
-            int newDestNum = Random.Range(0, 4);
-            int waitTime = 0;
-            switch (newDestNum)
-            {
-                case 0:
-                    newDestNum = (int)Destination.Club;
-                    waitTime = 15;
-                    break;
-                case 1:
-                    newDestNum = (int)Destination.Club;
-                    waitTime = 15;
-                    break;
-                case 2:
-                    newDestNum = (int)Destination.Food;
-                    waitTime = 8;
-                    break;
-                case 3:
-                    newDestNum = (int)Destination.Home;
-                    waitTime = 40;
-                    break;
-            }
-            myDestinations.Enqueue(new DestSlot(newDestNum, waitTime));
+            case 0:case 1:case 2:case 12:case 13:case 14:
+                newDestNum = (int)Destination.Food;
+                waitTime = 40;
+                break;
+            case 3:case 4:case 5:case 15:case 16:case 17:
+                newDestNum = (int)Destination.Home;
+                waitTime = 40;
+                break;
+            case 6:case 7:case 8:case 9:case 10:case 11:
+                newDestNum = (int)Destination.Club;
+                waitTime = 40;
+                break;
+            case 18:
+                newDestNum = (int)Destination.Coffee;
+                waitTime = 5;
+                break;
+            case 19:case 20:
+                newDestNum = (int)Destination.School;
+                waitTime = 10;
+                break;
+            case 21:
+                newDestNum = (int)Destination.Club;
+                waitTime = 40;
+                break;
         }
-        while (myDestinations.Count < 6)
-        {
-            int newDestNum = Random.Range(0, 8);
-            int waitTime = 0;
-            switch (newDestNum)
-            {
-                case 0:
-                    newDestNum = (int)Destination.Home;
-                    waitTime = 40;
-                    break;
-                case 1:
-                    newDestNum = (int)Destination.Home;
-                    waitTime = 40;
-                    break;
-                case 2:
-                    newDestNum = (int)Destination.Food;
-                    waitTime = 8;
-                    break;
-                case 3:
-                    newDestNum = (int)Destination.Food;
-                    waitTime = 8;
-                    break;
-                case 4:
-                    newDestNum = (int)Destination.Club;
-                    waitTime = 15;
-                    break;
-                case 5:
-                    newDestNum = (int)Destination.Club;
-                    waitTime = 15;
-                    break;
-                case 6:
-                    newDestNum = (int)Destination.Coffee;
-                    waitTime = 20;
-                    break;
-                case 7:
-                    newDestNum = (int)Destination.Club;
-                    waitTime = 15;
-                    break;
-            }
-            DestSlot newDest = new DestSlot(newDestNum, waitTime);
-            if (!myDestinations.Contains(newDest))
-            {
-                myDestinations.Enqueue(newDest);
-            }
-        }
+        checkToAddDest(new DestSlot(newDestNum, waitTime));
     }
+    
 }
