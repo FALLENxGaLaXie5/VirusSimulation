@@ -10,6 +10,8 @@ public class simPerson : MonoBehaviour
     private GameObject gO;
     public float speed;
     public int destCapacity;
+    public DestSlot nextDest;
+    public GameObject currentWaypoint;
 
     public enum Destination
     {
@@ -26,7 +28,7 @@ public class simPerson : MonoBehaviour
 
 
     public List<DestSlot> myDestinations = new List<DestSlot>();
-    public GameObject[] patrolPoints;
+    public int[] patrolPoints;
     public string wayPointTrack;
 
     //Used for patrol
@@ -81,6 +83,7 @@ public class simPerson : MonoBehaviour
     }
 
 
+
     public class MyState
     {
         public string Message { get; set; }
@@ -93,27 +96,35 @@ public class simPerson : MonoBehaviour
     }
 
 
+
+
     void Start()
     {
-        patrolPoints = GameObject.FindGameObjectsWithTag(wayPointTrack);
-        wayPointNumber = Random.Range(0, patrolPoints.Length);
-        myDestinations.Clear();
-    }
-    void Awake()
-    {
+        patrolPoints = new int[6];
+
         gameManagerInstance = GameManager.instance;
         myType = Random.Range((int)PeopleType.Nerd, (int)PeopleType.Partier);
         //test function
         //myType = 0;
         Debug.Log("My type is: " + myType);
+        myDestinations.Clear();
+        allocateDestinations();
         destCapacity = 6;
+        nextDest = myDestinations[0];
+        Debug.Log("My first destination: " + nextDest.ToString());
+        currentWaypoint = getDestinationWayPoint(nextDest);
+    }
+    void Awake()
+    {
+       
     }
 
     void Update()
     {
+        //copyArrayTest();
         AILerp lerp = gameObject.GetComponent<AILerp>();
         lerp.enabled = true;
-        if(myDestinations.Count < 6)
+        if(myDestinations.Count < destCapacity)
         {
             allocateDestinations();
         }
@@ -122,56 +133,214 @@ public class simPerson : MonoBehaviour
 
     public void Patrol()
 	{
-		//Classic Patrol Behaviour
-        //if(myDestinations.Peek() != null)
-        //{
-        //    DestSlot nextDest = myDestinations.Dequeue();
-        //}
-		GameObject currentWaypoint = patrolPoints [wayPointNumber];
 		AILerp lerp = gameObject.GetComponent<AILerp> ();
 		lerp.speed = speed;
 		lerp.rotationSpeed = 30;
 		lerp.target = currentWaypoint.transform;
 
-		if (Vector3.Distance (transform.position, currentWaypoint.transform.position) <= 0.5) 
+		if (Vector3.Distance (transform.position, currentWaypoint.transform.position) <= 1.5) 
 		{
-			wayPointNumber++;
-			if (wayPointNumber >= patrolPoints.Length) 
-			{
-					wayPointNumber = 0;
-			}
-
-		}
+            myDestinations.RemoveAt(0);
+            nextDest = myDestinations[0];
+            currentWaypoint = getDestinationWayPoint(nextDest);
+        }
 	}
 
-    //Nerd, WorkAHolic, Parent, Child, HabitualEater, Partier
+
+    void copyArrayTest()
+    {
+        for(int i = 0; i < myDestinations.Count; i++)
+        {
+            patrolPoints[i] = myDestinations[i].Dest;
+        }
+    }
+
+    GameObject getDestinationWayPoint(DestSlot nextDest)
+    {
+        int destNum = nextDest.Dest;
+        Debug.Log("This destinations number is: " + destNum);
+        foreach(GameObject currBuild in gameManagerInstance.destBuildings)
+        {
+            switch(destNum)
+            {
+                case 0:
+                    foreach(Transform t in currBuild.transform)
+                    {
+                        if(t.tag == "clubTag")
+                        {
+                            currentWaypoint = t.gameObject;
+                            gameManagerInstance.destBuildings.Remove(currBuild);        
+                            gameManagerInstance.destBuildings.Add(currBuild);
+                            foreach(Transform n in currBuild.transform)
+                            {
+                                if(n.tag == "A_Points")
+                                {
+                                    return n.gameObject;
+                                }
+                            }
+                        }
+                    }
+                    break;
+                case 1:
+                    foreach (Transform t in currBuild.transform)
+                    {
+                        if (t.tag == "gameStopTag")
+                        {
+                            currentWaypoint = t.gameObject;
+                            gameManagerInstance.destBuildings.Remove(currBuild);
+                            gameManagerInstance.destBuildings.Add(currBuild);
+                            foreach (Transform n in currBuild.transform)
+                            {
+                                if (n.tag == "A_Points")
+                                {
+                                    return n.gameObject;
+                                }
+                            }
+                        }
+                    }
+                    break;
+                case 2:
+                    foreach (Transform t in currBuild.transform)
+                    {
+                        if (t.tag == "frysElectronicsTag")
+                        {
+                            currentWaypoint = t.gameObject;
+                            gameManagerInstance.destBuildings.Remove(currBuild);
+                            gameManagerInstance.destBuildings.Add(currBuild);
+                            foreach (Transform n in currBuild.transform)
+                            {
+                                if (n.tag == "A_Points")
+                                {
+                                    return n.gameObject;
+                                }
+                            }
+                        }
+                    }
+                    break;
+                case 3:
+                    foreach (Transform t in currBuild.transform)
+                    {
+                        if (t.tag == "foodTag")
+                        {
+                            currentWaypoint = t.gameObject;
+                            gameManagerInstance.destBuildings.Remove(currBuild);
+                            gameManagerInstance.destBuildings.Add(currBuild);
+                            foreach (Transform n in currBuild.transform)
+                            {
+                                if (n.tag == "A_Points")
+                                {
+                                    return n.gameObject;
+                                }
+                            }
+                        }
+                    }
+                    break;
+                case 4:
+                    foreach (Transform t in currBuild.transform)
+                    {
+                        if (t.tag == "churchTag")
+                        {
+                            currentWaypoint = t.gameObject;
+                            gameManagerInstance.destBuildings.Remove(currBuild);
+                            gameManagerInstance.destBuildings.Add(currBuild);
+                            foreach (Transform n in currBuild.transform)
+                            {
+                                if (n.tag == "A_Points")
+                                {
+                                    return n.gameObject;
+                                }
+                            }
+                        }
+                    }
+                    break;
+                case 5:
+                    foreach (Transform t in currBuild.transform)
+                    {
+                        if (t.tag == "coffeeTag")
+                        {
+                            currentWaypoint = t.gameObject;
+                            gameManagerInstance.destBuildings.Remove(currBuild);
+                            gameManagerInstance.destBuildings.Add(currBuild);
+                            foreach (Transform n in currBuild.transform)
+                            {
+                                if (n.tag == "A_Points")
+                                {
+                                    return n.gameObject;
+                                }
+                            }
+                        }
+                    }
+                    break;
+                case 6:
+                    foreach (Transform t in currBuild.transform)
+                    {
+                        if (t.tag == "homeTag")
+                        {
+                            currentWaypoint = t.gameObject;
+                            gameManagerInstance.destBuildings.Remove(currBuild);
+                            gameManagerInstance.destBuildings.Add(currBuild);
+                            foreach (Transform n in currBuild.transform)
+                            {
+                                if (n.tag == "A_Points")
+                                {
+                                    return n.gameObject;
+                                }
+                            }
+                        }
+                    }
+                    break;
+                case 7:
+                    foreach (Transform t in currBuild.transform)
+                    {
+                        if (t.tag == "schoolTag")
+                        {
+                            currentWaypoint = t.gameObject;
+                            gameManagerInstance.destBuildings.Remove(currBuild);
+                            gameManagerInstance.destBuildings.Add(currBuild);
+                            foreach (Transform n in currBuild.transform)
+                            {
+                                if (n.tag == "A_Points")
+                                {
+                                    return n.gameObject;
+                                }
+                            }
+                        }
+                    }
+                    break;
+                default:
+                    break; ;
+            }
+        }
+        return null;
+    }
+
     void allocateDestinations()
     {
         switch(myType)
         {
             case 0:
                 nerdDestiny();
-                Debug.Log("Allocating for " + PeopleType.Nerd);
+                //Debug.Log("Allocating for " + PeopleType.Nerd);
                 break;
             case 1:
                 workerDestiny();
-                Debug.Log("Allocating for " + PeopleType.WorkAHolic);
+                //Debug.Log("Allocating for " + PeopleType.WorkAHolic);
                 break;
             case 3:
                 childDestiny();
-                Debug.Log("Allocating for " + PeopleType.Child);
+                //Debug.Log("Allocating for " + PeopleType.Child);
                 break;
             case 2:
                 parentDestiny();
-                Debug.Log("Allocating for " + PeopleType.Parent);
+                //Debug.Log("Allocating for " + PeopleType.Parent);
                 break;
             case 4:
                 eaterDestiny();
-                Debug.Log("Allocating for " + PeopleType.HabitualEater);
+                //Debug.Log("Allocating for " + PeopleType.HabitualEater);
                 break;
             case 5:
                 partyDestiny();
-                Debug.Log("Allocating for " + PeopleType.Partier);
+                //Debug.Log("Allocating for " + PeopleType.Partier);
                 break;
             default:
 
@@ -190,13 +359,13 @@ public class simPerson : MonoBehaviour
             else
             {
                 myDestinations.Add(newDest);
-                Debug.Log("My Destination is: " + newDest.ToString());
+                //Debug.Log("My Destination is: " + newDest.ToString());
             }
         }
         else
         {
             myDestinations.Add(newDest);
-            Debug.Log("My Destination is: " + newDest.ToString());
+            //Debug.Log("My Destination is: " + newDest.ToString());
         }
     }
     
