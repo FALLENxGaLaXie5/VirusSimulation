@@ -38,7 +38,9 @@ public class Infection : MonoBehaviour
             infected = true;
             Debug.Log("I've been infected!");
             currentColor = Color.red;
+            renderer.material.color = currentColor;
             //renderer.material.SetColor("_NewColor", Color.red);
+            Destroy(gameObject);
         }
     }
     void progressInfection()
