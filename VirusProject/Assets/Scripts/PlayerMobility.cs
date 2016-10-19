@@ -14,6 +14,7 @@ public class PlayerMobility : MonoBehaviour
 
 
     public float speed;
+    public float speedCopy;
 
     public float zeroSpeed = 0;
     public float actualSpeed;
@@ -31,18 +32,74 @@ public class PlayerMobility : MonoBehaviour
     public bool againstWallDownRight = false;
     public bool againstWallDownLeft = false;
 
+    private Rigidbody2D PlayerObject;
+    private Vector2 speedObj;
+    private Vector2 velocity;
+
+    
+    /*
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.tag == "wall" || other.tag == "dest")
+        {
+            //PlayerObject.AddForce(-1f * PlayerObject.velocity);
+            //other.attachedRigidbody.AddForce(-0.1 * other.attachedRigidbody.velocity);
+            speed *= -1;
+            Debug.Log("Speed is now 0!");
+        }
+    }
+    */
+    
+    /*    
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if(other.tag == "wall" || other.tag == "dest")
+        {
+            speed = speedCopy;
+            Debug.Log("Speed is now " + speed);
+        }
+    }
+    */
+
+    /*
+    void OnTriggerStay2D(Collider2D other)
+    {
+        if(other.tag == "wall" || other.tag == "dest")
+        {
+            speed *= -1;
+            //PlayerObject.AddForce(-1f * PlayerObject.velocity);
+            Debug.Log("Get out of my house!");
+        }
+        //Rigidbody2D otherBody = other.GetComponent<Rigidbody2D>
+        //other.attachedRigidbody.AddForce(-0.1 * other.attachedRigidbody.velocity);
+    }
+    */
     void Start ()
     {
         wallCheck = GameObject.FindGameObjectWithTag("wallCheck");
         actualSpeed = speed;
 
-        speedHorRight = speed;
-        speedHorLeft = speed;
-        speedVertUp = speed;
-        speedVertDown = speed;
+        //speedHorRight = speed;
+        //speedHorLeft = speed;
+        //speedVertUp = speed;
+        //speedVertDown = speed;
+
+        //speedCopy = speed;
+
+        PlayerObject = GetComponent<Rigidbody2D>();
+        //speedObj = new Vector2(speed, speed);
+        //velocity = new Vector2(0, 0);
     }
 
+    void FixedUpdate()
+    {
+        float inputX = Input.GetAxis("Horizontal");
+        float inputY = Input.GetAxis("Vertical");
+        //GetAxisRaw is 0 or 1, GetAxis changes from 0 to 1, from 1 to 0, not instantly.
 
+        Vector2 movement = new Vector2(inputX, inputY);
+        PlayerObject.velocity = movement * speed;
+    }
     void baseMovementWrapper()
     {
         if (Input.GetAxis("Horizontal") > 0)
@@ -120,7 +177,7 @@ public class PlayerMobility : MonoBehaviour
 
         if(againstWallUpRight)
         {
-            Debug.Log("Diagonal Up Right is being hit!");
+            //Debug.Log("Diagonal Up Right is being hit!");
             speedHorRight = zeroSpeed;
             speedVertUp = zeroSpeed;
         }
@@ -132,7 +189,7 @@ public class PlayerMobility : MonoBehaviour
 
         if (againstWallUpLeft)
         {
-            Debug.Log("Diagonal Up Left is being hit!");
+            //Debug.Log("Diagonal Up Left is being hit!");
 
             speedHorLeft = zeroSpeed;
             speedVertUp = zeroSpeed;
@@ -145,7 +202,7 @@ public class PlayerMobility : MonoBehaviour
 
         if (againstWallDownRight)
         {
-            Debug.Log("Diagonal Down Right is being hit!");
+            //Debug.Log("Diagonal Down Right is being hit!");
 
             speedHorRight = zeroSpeed;
             speedVertDown = zeroSpeed;
@@ -158,7 +215,7 @@ public class PlayerMobility : MonoBehaviour
 
         if (againstWallDownLeft)
         {
-            Debug.Log("Diagonal Down Left is being hit!");
+            //Debug.Log("Diagonal Down Left is being hit!");
 
             speedHorLeft = zeroSpeed;
             speedVertDown = zeroSpeed;
@@ -169,7 +226,7 @@ public class PlayerMobility : MonoBehaviour
             speedVertDown= actualSpeed;
         }
 
-        baseMovementWrapper();
+        //baseMovementWrapper();
        
 
     }

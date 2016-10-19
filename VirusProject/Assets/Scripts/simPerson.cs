@@ -320,27 +320,27 @@ public class simPerson : MonoBehaviour
         {
             case 0:
                 nerdDestiny();
-                Debug.Log("Allocating for " + PeopleType.Nerd);
+                //Debug.Log("Allocating for " + PeopleType.Nerd);
                 break;
             case 1:
                 workerDestiny();
-                Debug.Log("Allocating for " + PeopleType.WorkAHolic);
+                //Debug.Log("Allocating for " + PeopleType.WorkAHolic);
                 break;
             case 3:
                 childDestiny();
-                Debug.Log("Allocating for " + PeopleType.Child);
+                //Debug.Log("Allocating for " + PeopleType.Child);
                 break;
             case 2:
                 parentDestiny();
-                Debug.Log("Allocating for " + PeopleType.Parent);
+                //Debug.Log("Allocating for " + PeopleType.Parent);
                 break;
             case 4:
                 eaterDestiny();
-                Debug.Log("Allocating for " + PeopleType.HabitualEater);
+                //Debug.Log("Allocating for " + PeopleType.HabitualEater);
                 break;
             case 5:
                 partyDestiny();
-                Debug.Log("Allocating for " + PeopleType.Partier);
+                //Debug.Log("Allocating for " + PeopleType.Partier);
                 break;
             default:
 
