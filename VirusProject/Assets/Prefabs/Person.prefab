@@ -19,12 +19,12 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 4000013694433118}
-  - 212: {fileID: 212000012948906464}
   - 114: {fileID: 114000010117429670}
   - 114: {fileID: 114000012703457562}
   - 114: {fileID: 114000012698830418}
   - 50: {fileID: 50000010628766756}
   - 114: {fileID: 114000012478837086}
+  - 212: {fileID: 212000013104840974}
   m_Layer: 0
   m_Name: Person
   m_TagString: Untagged
@@ -143,7 +143,7 @@ MonoBehaviour:
     tagsChange: -1
     tagsSet: -1
   tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
---- !u!212 &212000012948906464
+--- !u!212 &212000013104840974
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -156,7 +156,7 @@ SpriteRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9c0721c9b4f3c4cb894656485acb9228, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -173,6 +173,6 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 0, g: 0.9558824, b: 0.58942837, a: 1}
+  m_Color: {r: 0.036007773, g: 0.8161765, b: 0.073671155, a: 1}
   m_FlipX: 0
   m_FlipY: 0

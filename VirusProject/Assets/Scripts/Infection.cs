@@ -14,7 +14,7 @@ public class Infection : MonoBehaviour
         playerReference = GameObject.FindGameObjectWithTag("wallCheck");
         infected = false;
         renderer = GetComponent<SpriteRenderer>();
-        currentColor = renderer.material.color;
+        currentColor = renderer.color;
 	}
 	
 	// Update is called once per frame
@@ -28,7 +28,8 @@ public class Infection : MonoBehaviour
         {
             //if they are infected
             //progress infection
-            
+            renderer.color = Color.Lerp(currentColor, Color.red, Mathf.PingPong(Time.time, 1));
+            //Color.Lerp
         }
 	}
     void checkForInfection()
@@ -37,10 +38,10 @@ public class Infection : MonoBehaviour
         {
             infected = true;
             Debug.Log("I've been infected!");
-            currentColor = Color.red;
-            renderer.material.color = currentColor;
+            //currentColor = Color.red;
+            //renderer.color = currentColor;
             //renderer.material.SetColor("_NewColor", Color.red);
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
     }
     void progressInfection()
