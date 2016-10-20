@@ -24,6 +24,7 @@ GameObject:
   - 114: {fileID: 114000012703457562}
   - 114: {fileID: 114000012698830418}
   - 50: {fileID: 50000010628766756}
+  - 114: {fileID: 114000012478837086}
   m_Layer: 0
   m_Name: Person
   m_TagString: Untagged
@@ -74,9 +75,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   speed: 1
-  patrolPoints: []
+  destCapacity: 0
+  currentWaypoint: {fileID: 0}
+  patrolPoints: 
   wayPointTrack: A_Points
   oncePerCycle: 1
+  myType: 0
+--- !u!114 &114000012478837086
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012244520592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d2ff2901459be84791020c79d86b073, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerReference: {fileID: 0}
+  infected: 0
+  currentColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &114000012698830418
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -138,7 +156,7 @@ SpriteRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9c0721c9b4f3c4cb894656485acb9228, type: 2}
+  - {fileID: 0}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -154,7 +172,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 0}
+  m_Color: {r: 0, g: 0.9558824, b: 0.58942837, a: 1}
   m_FlipX: 0
   m_FlipY: 0
