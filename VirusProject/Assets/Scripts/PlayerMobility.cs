@@ -32,7 +32,7 @@ public class PlayerMobility : MonoBehaviour
     public bool againstWallDownRight = false;
     public bool againstWallDownLeft = false;
 
-    private Rigidbody2D PlayerObject;
+    private Rigidbody PlayerObject;
     private Vector2 speedObj;
     private Vector2 velocity;
 
@@ -86,9 +86,19 @@ public class PlayerMobility : MonoBehaviour
 
         //speedCopy = speed;
 
-        PlayerObject = GetComponent<Rigidbody2D>();
+        PlayerObject = GetComponent<Rigidbody>();
         //speedObj = new Vector2(speed, speed);
         //velocity = new Vector2(0, 0);
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "AI")
+        {
+            simPerson person = other.gameObject.GetComponent<simPerson>();
+            person.myState = simPerson.State.Detection;
+            Debug.Log("Player Detected!");
+        }
     }
 
     void FixedUpdate()
@@ -97,7 +107,7 @@ public class PlayerMobility : MonoBehaviour
         float inputY = Input.GetAxis("Vertical");
         //GetAxisRaw is 0 or 1, GetAxis changes from 0 to 1, from 1 to 0, not instantly.
 
-        Vector2 movement = new Vector2(inputX, inputY);
+        Vector3 movement = new Vector3(inputX, inputY, 0);
         PlayerObject.velocity = movement * speed;
     }
     void baseMovementWrapper()

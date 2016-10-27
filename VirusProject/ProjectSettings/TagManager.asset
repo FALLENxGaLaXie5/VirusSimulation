@@ -16,6 +16,7 @@ TagManager:
   - frysElectronicsTag
   - homeTag
   - gameStopTag
+  - AI
   layers:
   - Default
   - TransparentFX

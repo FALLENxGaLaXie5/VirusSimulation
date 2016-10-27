@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < destinationBuildingsIn.Length; i++)
         {
             destBuildings.Add(destinationBuildingsIn[i]);
-            Debug.Log(destBuildings[i].tag + " tag was added to dest buildings!");
+            //Debug.Log(destBuildings[i].tag + " tag was added to dest buildings!");
         }
 
     }

@@ -71,6 +71,7 @@ GameObject:
   - 212: {fileID: 212000010346496138}
   - 114: {fileID: 114000013458176916}
   - 222: {fileID: 222000010231095790}
+  - 65: {fileID: 65000014188525834}
   m_Layer: 9
   m_Name: School
   m_TagString: dest
@@ -99,7 +100,7 @@ Transform:
   m_GameObject: {fileID: 1000013028950188}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 23.558985, y: 8.177266, z: 1}
+  m_LocalScale: {x: 18.847187, y: 7.155109, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 224000013578611894}
@@ -111,7 +112,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010874775100}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 18, y: 0, z: 0}
+  m_LocalPosition: {x: 19.3, y: 0, z: 0}
   m_LocalScale: {x: 1.3910929, y: 1.3910934, z: 1.3910934}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -160,6 +161,18 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
+--- !u!65 &65000014188525834
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013612655348}
+  m_Material: {fileID: 13400000, guid: 707852b83ff39c049a1b209f45878781, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 21.830006, y: 7.8300004, z: 0.2}
+  m_Center: {x: 0, y: 0.00000031588868, z: 0}
 --- !u!102 &102000012405971408
 TextMesh:
   serializedVersion: 3
@@ -271,9 +284,9 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013612655348}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.055647224, y: 0.2683575, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.953125}
+  m_LocalScale: {x: 0.08764435, y: 0.7547551, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 4000014029192730}
@@ -283,6 +296,6 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1.9902868, y: -3.8166516}
+  m_AnchoredPosition: {x: -8.221561, y: -4.0910025}
   m_SizeDelta: {x: 21.83, y: 7.8300004}
   m_Pivot: {x: 0.5, y: 0.5}

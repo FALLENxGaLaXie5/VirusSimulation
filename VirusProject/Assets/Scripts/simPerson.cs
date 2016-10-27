@@ -23,9 +23,10 @@ public class simPerson : MonoBehaviour
     };
     public enum State
     {
-        Walking, Waiting
+        Walking, Waiting, Detection
     };
 
+    public State myState;
 
     public List<DestSlot> myDestinations = new List<DestSlot>();
     public int[] patrolPoints;
@@ -106,13 +107,14 @@ public class simPerson : MonoBehaviour
         myType = Random.Range((int)PeopleType.Nerd, (int)PeopleType.Partier);
         //test function
         //myType = 0;
-        Debug.Log("My type is: " + myType);
+        //Debug.Log("My type is: " + myType);
         myDestinations.Clear();
         allocateDestinations();
         destCapacity = 6;
         nextDest = myDestinations[0];
-        Debug.Log("My first destination: " + nextDest.ToString());
+        //Debug.Log("My first destination: " + nextDest.ToString());
         currentWaypoint = getDestinationWayPoint(nextDest);
+        myState = State.Walking;
     }
     void Awake()
     {
@@ -158,7 +160,7 @@ public class simPerson : MonoBehaviour
     GameObject getDestinationWayPoint(DestSlot nextDest)
     {
         int destNum = nextDest.Dest;
-        Debug.Log("This destinations number is: " + destNum);
+        //Debug.Log("This destinations number is: " + destNum);
         foreach(GameObject currBuild in gameManagerInstance.destBuildings)
         {
             switch(destNum)

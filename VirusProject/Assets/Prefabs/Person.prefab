@@ -22,12 +22,13 @@ GameObject:
   - 114: {fileID: 114000010117429670}
   - 114: {fileID: 114000012703457562}
   - 114: {fileID: 114000012698830418}
-  - 50: {fileID: 50000010628766756}
   - 114: {fileID: 114000012478837086}
   - 212: {fileID: 212000013104840974}
+  - 54: {fileID: 54000011776872566}
+  - 65: {fileID: 65000013962831052}
   m_Layer: 0
   m_Name: Person
-  m_TagString: Untagged
+  m_TagString: AI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -38,30 +39,40 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012244520592}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.002, y: -2.862, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 8.11, y: -3.68, z: 0}
   m_LocalScale: {x: 2.0569744, y: 2.0569744, z: 2.0569744}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!50 &50000010628766756
-Rigidbody2D:
-  serializedVersion: 2
+--- !u!54 &54000011776872566
+Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012244520592}
-  m_UseAutoMass: 0
+  serializedVersion: 2
   m_Mass: 1
-  m_LinearDrag: 0
+  m_Drag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
-  m_Interpolate: 1
-  m_SleepingMode: 1
+  m_Interpolate: 0
+  m_Constraints: 56
   m_CollisionDetection: 0
-  m_Constraints: 0
+--- !u!65 &65000013962831052
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012244520592}
+  m_Material: {fileID: 13400000, guid: 707852b83ff39c049a1b209f45878781, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.14188911, y: 0.14551136, z: 0.8}
+  m_Center: {x: -0.0018114009, y: 0.0036221063, z: 0}
 --- !u!114 &114000010117429670
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -77,6 +88,7 @@ MonoBehaviour:
   speed: 1
   destCapacity: 0
   currentWaypoint: {fileID: 0}
+  myState: 0
   patrolPoints: 
   wayPointTrack: A_Points
   oncePerCycle: 1
@@ -95,6 +107,10 @@ MonoBehaviour:
   playerReference: {fileID: 0}
   infected: 0
   currentColor: {r: 0, g: 0, b: 0, a: 0}
+  R: 0
+  G: 0
+  B: 0
+  A: 0
 --- !u!114 &114000012698830418
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -110,7 +126,7 @@ MonoBehaviour:
   target: {fileID: 0}
   canSearch: 1
   canMove: 1
-  speed: 0.1
+  speed: 10
   enableRotation: 1
   rotationIn2D: 1
   rotationSpeed: 30
