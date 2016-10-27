@@ -124,19 +124,62 @@ public class simPerson : MonoBehaviour
     void Update()
     {
         //copyArrayTest();
+        switch(myState)
+        {
+            case State.Walking:
+                if (myDestinations.Count < destCapacity)
+                {
+                    allocateDestinations();
+                }
+                Patrol();
+                break;
+            case State.Detection:
+                if(myDestinations.Count < 1)
+                {
+                    allocateForRunner();
+                }
+                runAway();
+                break;
+            case State.Waiting:
+                break;
+            default:
+                break;
+        }
+        
+     }
+
+    void allocateForRunner()
+    {
+        myDestinations.Add(new DestSlot((int)Destination.Home, 40));
+        currentWaypoint = getDestinationWayPoint(myDestinations[0]);
+    }
+
+    void runAway()
+    {
         AILerp lerp = gameObject.GetComponent<AILerp>();
         lerp.enabled = true;
-        if(myDestinations.Count < destCapacity)
+        lerp.speed = speed + 3.0f;
+        lerp.rotationSpeed = 30;
+        lerp.target = currentWaypoint.transform;
+
+
+        if (Vector3.Distance(transform.position, currentWaypoint.transform.position) <= 1.5)
         {
+            myState = State.Walking;
+            myDestinations.RemoveAt(0);
             allocateDestinations();
+            nextDest = myDestinations[0];
+            currentWaypoint = getDestinationWayPoint(nextDest);
+            Debug.Log("My new state is " + myState);
         }
-        Patrol();
-     }
+
+    }
 
     public void Patrol()
 	{
 		AILerp lerp = gameObject.GetComponent<AILerp> ();
-		lerp.speed = speed;
+        lerp.enabled = true;
+        lerp.speed = speed;
 		lerp.rotationSpeed = 30;
 		lerp.target = currentWaypoint.transform;
 
@@ -573,5 +616,4 @@ public class simPerson : MonoBehaviour
         }
         checkToAddDest(new DestSlot(newDestNum, waitTime));
     }
-    
 }
