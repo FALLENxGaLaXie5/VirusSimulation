@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -104,7 +105,7 @@ public class simPerson : MonoBehaviour
         patrolPoints = new int[6];
 
         gameManagerInstance = GameManager.instance;
-        myType = Random.Range((int)PeopleType.Nerd, (int)PeopleType.Partier);
+        myType = UnityEngine.Random.Range((int)PeopleType.Nerd, (int)PeopleType.Partier);
         //test function
         //myType = 0;
         //Debug.Log("My type is: " + myType);
@@ -123,7 +124,7 @@ public class simPerson : MonoBehaviour
 
     void Update()
     {
-        //copyArrayTest();
+        copyArrayTest();
         switch(myState)
         {
             case State.Walking:
@@ -152,6 +153,7 @@ public class simPerson : MonoBehaviour
     {
         myDestinations.Add(new DestSlot((int)Destination.Home, 40));
         currentWaypoint = getDestinationWayPoint(myDestinations[0]);
+        //Debug.Log("I have " + myDestinations.Count + " destinations!");
     }
 
     void runAway()
@@ -170,7 +172,7 @@ public class simPerson : MonoBehaviour
             allocateDestinations();
             nextDest = myDestinations[0];
             currentWaypoint = getDestinationWayPoint(nextDest);
-            Debug.Log("My new state is " + myState);
+            //Debug.Log("My new state is " + myState);
         }
 
     }
@@ -186,7 +188,15 @@ public class simPerson : MonoBehaviour
 		if (Vector3.Distance (transform.position, currentWaypoint.transform.position) <= 1.5) 
 		{
             myDestinations.RemoveAt(0);
-            nextDest = myDestinations[0];
+            try
+            {
+                nextDest = myDestinations[0];
+            }
+            catch(ArgumentOutOfRangeException e)
+            {
+                Debug.Log("For some reason we dont have any destinations! Allocating.");
+                allocateDestinations();
+            }
             currentWaypoint = getDestinationWayPoint(nextDest);
         }
 	}
@@ -194,10 +204,12 @@ public class simPerson : MonoBehaviour
 
     void copyArrayTest()
     {
+        patrolPoints = new int[myDestinations.Count];
         for(int i = 0; i < myDestinations.Count; i++)
         {
             patrolPoints[i] = myDestinations[i].Dest;
         }
+        
     }
 
     GameObject getDestinationWayPoint(DestSlot nextDest)
@@ -416,7 +428,7 @@ public class simPerson : MonoBehaviour
     
     void nerdDestiny()
     {
-            int newDestNum = Random.Range(0, 22);
+            int newDestNum = UnityEngine.Random.Range(0, 22);
             int waitTime = 0;
             switch (newDestNum)
             {
@@ -451,7 +463,7 @@ public class simPerson : MonoBehaviour
     
     void workerDestiny()
     {
-        int newDestNum = Random.Range(0, 22);
+        int newDestNum = UnityEngine.Random.Range(0, 22);
         int waitTime = 0;
         switch (newDestNum)
         {
@@ -486,7 +498,7 @@ public class simPerson : MonoBehaviour
 
     void childDestiny()
     {
-        int newDestNum = Random.Range(0, 22);
+        int newDestNum = UnityEngine.Random.Range(0, 22);
         int waitTime = 0;
         switch (newDestNum)
         {
@@ -519,7 +531,7 @@ public class simPerson : MonoBehaviour
     }
     void parentDestiny()
     {
-        int newDestNum = Random.Range(0, 22);
+        int newDestNum = UnityEngine.Random.Range(0, 22);
         int waitTime = 0;
         switch (newDestNum)
         {
@@ -552,7 +564,7 @@ public class simPerson : MonoBehaviour
     }
     void eaterDestiny()
     {
-        int newDestNum = Random.Range(0, 22);
+        int newDestNum = UnityEngine.Random.Range(0, 22);
         int waitTime = 0;
         switch (newDestNum)
         {
@@ -585,7 +597,7 @@ public class simPerson : MonoBehaviour
     }
     void partyDestiny()
     {
-        int newDestNum = Random.Range(0, 22);
+        int newDestNum = UnityEngine.Random.Range(0, 22);
         int waitTime = 0;
         switch (newDestNum)
         {
