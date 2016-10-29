@@ -26,6 +26,7 @@ GameObject:
   - 212: {fileID: 212000013104840974}
   - 54: {fileID: 54000011776872566}
   - 65: {fileID: 65000013962831052}
+  - 135: {fileID: 135000010027210708}
   m_Layer: 0
   m_Name: Person
   m_TagString: AI
@@ -40,7 +41,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012244520592}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 8.11, y: -3.68, z: 0}
+  m_LocalPosition: {x: 5.0458527, y: 11.2813635, z: 0}
   m_LocalScale: {x: 2.0569744, y: 2.0569744, z: 2.0569744}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -159,6 +160,18 @@ MonoBehaviour:
     tagsChange: -1
     tagsSet: -1
   tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+--- !u!135 &135000010027210708
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012244520592}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.4
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!212 &212000013104840974
 SpriteRenderer:
   m_ObjectHideFlags: 1

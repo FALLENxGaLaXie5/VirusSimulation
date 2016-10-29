@@ -12,8 +12,31 @@ public class Infection : MonoBehaviour
     public float B;
     public float A;
     private SpriteRenderer renderer;
-	// Use this for initialization
-	void Start ()
+
+
+    public class TimeObject
+    {
+        public float timer { get; set; }
+        public Infection infObject;
+        public bool potentialInfection = false;
+        public TimeObject(Infection objectPassed)
+        {
+            timer = 0f;
+            infObject = objectPassed;
+        }
+
+        private void Update()
+        {
+            timer += Time.deltaTime;
+            if(timer >= 3f)
+            {
+                infObject.infected = true;
+            }
+        }
+    }
+
+    // Use this for initialization
+    void Start ()
     {
         playerReference = GameObject.FindGameObjectWithTag("wallCheck");
         infected = false;
