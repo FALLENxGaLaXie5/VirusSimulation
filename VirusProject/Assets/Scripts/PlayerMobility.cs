@@ -98,8 +98,8 @@ public class PlayerMobility : MonoBehaviour
             simPerson person = other.gameObject.GetComponent<simPerson>();
             person.myState = simPerson.State.Detection;
             person.myDestinations.Clear();
-            Debug.Log("Player Detected!");
-            Debug.Log("My new state is " + person.myState);
+            //Debug.Log("Player Detected!");
+            //Debug.Log("My new state is " + person.myState);
         }
     }
 

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Infection : MonoBehaviour
 {
@@ -13,24 +14,76 @@ public class Infection : MonoBehaviour
     public float A;
     private SpriteRenderer renderer;
 
-
-    public class TimeObject
+    List<TimeObject> peopleTouched;
+   
+    public class TimeObject : MonoBehaviour
     {
         public float timer { get; set; }
         public Infection infObject;
         public bool potentialInfection = false;
-        public TimeObject(Infection objectPassed)
+        public TimeObject(ref Infection objectPassed)
         {
             timer = 0f;
             infObject = objectPassed;
+            waitToInfect();
+            objectPassed.infected = true;
+            if(objectPassed.infected)
+            {
+                Debug.Log("AI INFECTED AI!!!");
+            }
+        }
+        void Start()
+        {
+            //waitToInfect();
         }
 
+        IEnumerator waitToInfect()
+        {
+            yield return new WaitForSeconds(2f);
+            //infObject.infected = true;
+            //Debug.Log("AI INFECTED AI!!!");
+        }
+        /*
         private void Update()
         {
             timer += Time.deltaTime;
-            if(timer >= 3f)
+            if(timer >= 1f)
             {
                 infObject.infected = true;
+                Debug.Log("AI INFECTED AI!!!!");
+            }
+        }
+        */
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if(infected && other.gameObject.tag == "AI")
+        {
+            //Debug.Log("I touched another AI!");
+            Infection objInf = other.gameObject.GetComponent<Infection>();
+            peopleTouched.Add(new TimeObject(ref objInf));
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if(infected && other.gameObject.tag == "AI")
+        {
+            for(int i = 0; i < peopleTouched.Count; i++)
+            {
+                if(peopleTouched[i].infObject == null)
+                {
+                    peopleTouched.RemoveAt(i);
+                    continue;
+                }
+                else if(peopleTouched[i].infObject.gameObject.GetInstanceID() == other.gameObject.GetInstanceID())
+                {
+                    //Debug.Log("AI " + peopleTouched[i].infObject.gameObject.GetInstanceID() + " ran from AI!");
+                    TimeObject timObj = peopleTouched[i];
+                    timObj = null;
+                    peopleTouched.RemoveAt(i);
+                }
             }
         }
     }
@@ -42,6 +95,7 @@ public class Infection : MonoBehaviour
         infected = false;
         renderer = GetComponent<SpriteRenderer>();
         currentColor = renderer.color;
+        peopleTouched = new List<TimeObject>();
 	}
 	
 	// Update is called once per frame
@@ -54,7 +108,7 @@ public class Infection : MonoBehaviour
         if(Vector3.Distance(transform.position, playerReference.transform.position) <= 2.0)
         {
             infected = true;
-            Debug.Log("I've been infected!");
+            //Debug.Log("I've been infected!");
             //currentColor = Color.blue
           
             //renderer.color = currentColor;
@@ -63,13 +117,13 @@ public class Infection : MonoBehaviour
         }
         else
         {
-            Debug.Log("Too far away!");
+            //Debug.Log("Too far away!");
         }
     }
 
     void OnMouseDown()
     {
-        Debug.Log("I got clicked!");
+        //Debug.Log("I got clicked!");
         if(!infected)
         {
             checkForInfection();
