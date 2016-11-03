@@ -5,7 +5,6 @@ using System.Collections.Generic;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-
     public GameObject[] destinationBuildingsIn;
     public List<GameObject> destBuildings;
 	// Use this for initialization

@@ -14,58 +14,40 @@ public class Infection : MonoBehaviour
     public float A;
     private SpriteRenderer renderer;
 
-    List<TimeObject> peopleTouched;
-   
-    public class TimeObject : MonoBehaviour
-    {
-        public float timer { get; set; }
-        public Infection infObject;
-        public bool potentialInfection = false;
-        public TimeObject(ref Infection objectPassed)
-        {
-            timer = 0f;
-            infObject = objectPassed;
-            waitToInfect();
-            objectPassed.infected = true;
-            if(objectPassed.infected)
-            {
-                Debug.Log("AI INFECTED AI!!!");
-            }
-        }
-        void Start()
-        {
-            //waitToInfect();
-        }
+    List<GameObject> peopleTouched;
 
-        IEnumerator waitToInfect()
+    void OnTriggerEnter(Collider other)
+    { 
+
+        int prob = Random.Range(0, 100);
+
+        if(infected && other.gameObject.tag == "AI" && prob <= 2)
         {
-            yield return new WaitForSeconds(2f);
-            //infObject.infected = true;
-            //Debug.Log("AI INFECTED AI!!!");
+            //StartCoroutine(waitToInfect());
+            Infection inf = other.gameObject.GetComponent<Infection>();
+            inf.infected = true;
+            Debug.Log("AI INFECTED AI!");
         }
-        /*
-        private void Update()
-        {
-            timer += Time.deltaTime;
-            if(timer >= 1f)
-            {
-                infObject.infected = true;
-                Debug.Log("AI INFECTED AI!!!!");
-            }
-        }
-        */
     }
 
+    IEnumerator waitToInfect()
+    {
+        yield return new WaitForSeconds(4f);
+    }
+
+    /*
     void OnTriggerEnter(Collider other)
     {
         if(infected && other.gameObject.tag == "AI")
         {
             //Debug.Log("I touched another AI!");
             Infection objInf = other.gameObject.GetComponent<Infection>();
+            GameObject newTimeObject = Instantiate
             peopleTouched.Add(new TimeObject(ref objInf));
         }
     }
-
+    */
+    /*
     void OnTriggerExit(Collider other)
     {
         if(infected && other.gameObject.tag == "AI")
@@ -87,6 +69,7 @@ public class Infection : MonoBehaviour
             }
         }
     }
+    */
 
     // Use this for initialization
     void Start ()
@@ -95,7 +78,7 @@ public class Infection : MonoBehaviour
         infected = false;
         renderer = GetComponent<SpriteRenderer>();
         currentColor = renderer.color;
-        peopleTouched = new List<TimeObject>();
+        //peopleTouched = new List<TimeObject>();
 	}
 	
 	// Update is called once per frame
