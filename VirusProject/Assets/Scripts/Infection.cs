@@ -7,6 +7,7 @@ public class Infection : MonoBehaviour
     public GameObject playerReference;
     public bool infected;
     public Color currentColor;
+    GameManager gameManagerInstance;
 
     public float R;
     public float G;
@@ -14,7 +15,6 @@ public class Infection : MonoBehaviour
     public float A;
     private SpriteRenderer renderer;
 
-    List<GameObject> peopleTouched;
 
     void OnTriggerEnter(Collider other)
     { 
@@ -74,6 +74,7 @@ public class Infection : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
+        gameManagerInstance = GameManager.instance;
         playerReference = GameObject.FindGameObjectWithTag("wallCheck");
         infected = false;
         renderer = GetComponent<SpriteRenderer>();
@@ -128,7 +129,9 @@ public class Infection : MonoBehaviour
             R = renderer.color.r;
             if (1 - R <= 0.05)
             {
+                gameManagerInstance.aiList.Remove(gameObject);
                 Destroy(gameObject);
+
             }
             G = renderer.color.g;
             B = renderer.color.b;
