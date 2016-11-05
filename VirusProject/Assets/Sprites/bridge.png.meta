@@ -1,12 +1,11 @@
 fileFormatVersion: 2
-guid: 9e6705b1707e976449752a90366e6d54
-timeCreated: 1478330906
+guid: 9051270e8c01e1642a35e5de8e88d6e3
+timeCreated: 1478372547
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: redTop_0
-    21300002: grass_0
-    21300004: bushes
+    21300000: bridge_0
+    21300002: water
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -46,7 +45,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spriteBorder: {x: 0, y: 234, z: 0, w: 111}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -56,39 +55,26 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: redTop_0
+      name: bridge_0
       rect:
         serializedVersion: 2
-        x: 335
-        y: 236
-        width: 160
-        height: 246
+        x: 227
+        y: 150
+        width: 107
+        height: 161
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: grass_0
+      name: water
       rect:
         serializedVersion: 2
-        x: 154
-        y: 34
-        width: 102
-        height: 29
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: bushes
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 118
-        width: 36
-        height: 202
+        x: 76
+        y: 184
+        width: 144
+        height: 57
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
