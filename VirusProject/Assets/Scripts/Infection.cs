@@ -16,7 +16,7 @@ public class Infection : MonoBehaviour
     private SpriteRenderer renderer;
 
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerEnter2D(Collider2D other)
     { 
 
         int prob = Random.Range(0, 100);

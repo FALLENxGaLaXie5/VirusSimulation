@@ -13,7 +13,6 @@ public class simPerson : MonoBehaviour
     public int destCapacity;
     public DestSlot nextDest;
     public GameObject currentWaypoint;
-
     public enum Destination
     {
         Club, Gamestop, Frys, Food, Church, Coffee, Home, School
@@ -103,7 +102,6 @@ public class simPerson : MonoBehaviour
     void Start()
     {
         patrolPoints = new int[6];
-
         gameManagerInstance = GameManager.instance;
         myType = UnityEngine.Random.Range((int)PeopleType.Nerd, (int)PeopleType.Partier);
         //test function
