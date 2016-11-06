@@ -17,6 +17,8 @@ TagManager:
   - homeTag
   - gameStopTag
   - AI
+  - mainMenuPanelTag
+  - aiChild
   layers:
   - Default
   - TransparentFX

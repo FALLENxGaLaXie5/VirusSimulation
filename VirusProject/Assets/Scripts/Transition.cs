@@ -34,6 +34,10 @@ public class Transition : MonoBehaviour
     {
         SceneManager.LoadScene("Main");
     }
+    public void transitionHelp()
+    {
+        SceneManager.LoadScene("HelpUI");
+    }
     public void quitGame()
     {
         Application.Quit();
