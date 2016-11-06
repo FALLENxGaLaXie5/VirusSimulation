@@ -115,6 +115,8 @@ public class simPerson : MonoBehaviour
         currentWaypoint = getDestinationWayPoint(nextDest);
         myState = State.Walking;
     }
+
+
     void Awake()
     {
        
@@ -144,7 +146,6 @@ public class simPerson : MonoBehaviour
             default:
                 break;
         }
-        
      }
 
     void allocateForRunner()

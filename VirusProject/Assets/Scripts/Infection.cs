@@ -13,7 +13,7 @@ public class Infection : MonoBehaviour
     public float G;
     public float B;
     public float A;
-    private SpriteRenderer renderer;
+    //private SpriteRenderer renderer;
 
 
     void OnTriggerEnter2D(Collider2D other)
@@ -77,16 +77,21 @@ public class Infection : MonoBehaviour
         gameManagerInstance = GameManager.instance;
         playerReference = GameObject.FindGameObjectWithTag("wallCheck");
         infected = false;
-        renderer = GetComponent<SpriteRenderer>();
-        currentColor = renderer.color;
+        //GetComponent<Renderer>() = GetComponent<SpriteRenderer>();
+        //if(renderer.color != null)
+        //{
+            //currentColor = renderer.color;
+        //}
         //peopleTouched = new List<TimeObject>();
-	}
+    }
 	
 	// Update is called once per frame
 	void Update ()
     {
         progressInfection();
+        
 	}
+
     void checkForInfection()
     {
         if(Vector3.Distance(transform.position, playerReference.transform.position) <= 2.0)
@@ -124,19 +129,17 @@ public class Infection : MonoBehaviour
         {
             //if they are infected
             //progress infection
-            //renderer.color = Color.Lerp(currentColor, Color.red, Mathf.PingPong(Time.time, 1));
-            renderer.color = Color.Lerp(renderer.color, Color.red, 0.001f);
-            R = renderer.color.r;
+            //GetComponent<Renderer>().color = Color.Lerp(GetComponent<Renderer>().color, Color.red, 0.001f);
+            //R = GetComponent<Renderer>().color.r;
             if (1 - R <= 0.05)
             {
                 gameManagerInstance.aiList.Remove(gameObject);
                 Destroy(gameObject);
 
             }
-            G = renderer.color.g;
-            B = renderer.color.b;
-            A = renderer.color.a;
-            //Color.Lerp
+            //G = GetComponent<Renderer>().color.g;
+            //B = GetComponent<Renderer>().color.b;
+            //A = GetComponent<Renderer>().color.a;
         }
     }
 }
