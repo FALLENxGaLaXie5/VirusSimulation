@@ -5,17 +5,17 @@ using UnityEngine.SceneManagement;
 
 public class HelpTransition : MonoBehaviour
 {
-	// Use this for initialization
-	void Start ()
-    {
-	
-	}
-	public void transHelp()
+    /**
+        Virus Simulation Project - Software Engineering Comp 350
+        HelpTransition.cs
+        Purpose: Will be called by button to transition back to title scene
+
+        @author Joshua Steward
+        @version 1.0 11/7/2016
+    */
+    public void transHelp()
     {
         SceneManager.LoadScene("TitleScene");
     }
-	// Update is called once per frame
-	void Update () {
-	
-	}
+
 }

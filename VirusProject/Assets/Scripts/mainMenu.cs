@@ -2,18 +2,17 @@
 using System.Collections;
 using UnityEngine.SceneManagement;
 
-public class mainMenu : MonoBehaviour {
+public class mainMenu : MonoBehaviour
+{
 
-	// Use this for initialization
-	/*void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}*/
+    /**
+    Virus Simulation Project - Software Engineering Comp 350
+    mainMenu.cs
+    Purpose: Will load the main scene.
 
+    @author Joshua Steward
+    @version 1.0 11/7/2016
+    */
     public void LoadByIndex(int sceneIndex)
     {
         SceneManager.LoadScene(sceneIndex);

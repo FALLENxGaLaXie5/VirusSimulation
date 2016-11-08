@@ -2,144 +2,146 @@
 using System.Collections;
 using System.Collections.Generic;
 
+//Base C# class inheriting from Monobehavior for use with base unity functions
 public class Infection : MonoBehaviour
 {
+    //GameObject reference to the player object
+    // - will be used reference player states and positioning compared to AI objects
     public GameObject playerReference;
+
+    //Infected status indicator
     public bool infected;
+
+    //Current color reference of the AI - used for debugging infection purposes
     public Color currentColor;
+
+    //reference for static GameManager
     GameManager gameManagerInstance;
 
+    //RGBA Color indicators - used for debugging infection state
     public float R;
     public float G;
     public float B;
     public float A;
-    //private SpriteRenderer renderer;
+
+    //Child and renderer - the AI animations and materials are set on a child of the actual AI object
+    // - therefore, these must be referenced
+    private GameObject child;
+    private SpriteRenderer renderer;
 
 
+    /**
+        Virus Simulation Project - Software Engineering Comp 350
+        Infection.cs
+        Purpose: Detects and triggers when trigger-marked colliders are within range.
+        Generates probability which is used to infect the game object attached to other collider.
+        Sets infected to true, and uses debugging tool.
+
+        @param other The 2D collider that is attached to another gameObject that collides with this game object
+        @author Zane Gittins
+        @version 1.0 11/7/2016
+    */
     void OnTriggerEnter2D(Collider2D other)
     { 
-
         int prob = Random.Range(0, 100);
-
         if(infected && other.gameObject.tag == "AI" && prob <= 2)
         {
-            //StartCoroutine(waitToInfect());
             Infection inf = other.gameObject.GetComponent<Infection>();
             inf.infected = true;
             Debug.Log("AI INFECTED AI!");
         }
     }
 
-    IEnumerator waitToInfect()
-    {
-        yield return new WaitForSeconds(4f);
-    }
+    /**
+        Virus Simulation Project - Software Engineering Comp 350
+        Infection.cs
+        Purpose: Initialization Function. Initializes global variables. Similar to constructors.
 
-    /*
-    void OnTriggerEnter(Collider other)
-    {
-        if(infected && other.gameObject.tag == "AI")
-        {
-            //Debug.Log("I touched another AI!");
-            Infection objInf = other.gameObject.GetComponent<Infection>();
-            GameObject newTimeObject = Instantiate
-            peopleTouched.Add(new TimeObject(ref objInf));
-        }
-    }
+        @author Joshua Steward
+        @version 1.0 11/7/2016
     */
-    /*
-    void OnTriggerExit(Collider other)
-    {
-        if(infected && other.gameObject.tag == "AI")
-        {
-            for(int i = 0; i < peopleTouched.Count; i++)
-            {
-                if(peopleTouched[i].infObject == null)
-                {
-                    peopleTouched.RemoveAt(i);
-                    continue;
-                }
-                else if(peopleTouched[i].infObject.gameObject.GetInstanceID() == other.gameObject.GetInstanceID())
-                {
-                    //Debug.Log("AI " + peopleTouched[i].infObject.gameObject.GetInstanceID() + " ran from AI!");
-                    TimeObject timObj = peopleTouched[i];
-                    timObj = null;
-                    peopleTouched.RemoveAt(i);
-                }
-            }
-        }
-    }
-    */
-
-    // Use this for initialization
     void Start ()
     {
         gameManagerInstance = GameManager.instance;
         playerReference = GameObject.FindGameObjectWithTag("wallCheck");
         infected = false;
-        //GetComponent<Renderer>() = GetComponent<SpriteRenderer>();
-        //if(renderer.color != null)
-        //{
-            //currentColor = renderer.color;
-        //}
-        //peopleTouched = new List<TimeObject>();
-    }
-	
-	// Update is called once per frame
-	void Update ()
+        child = gameObject.transform.GetChild(0).gameObject;
+        renderer = child.GetComponent<SpriteRenderer>();
+     }
+
+    /**
+        Virus Simulation Project - Software Engineering Comp 350
+        Infection.cs
+        Purpose: Update is called at the beginning of every frame at run time.
+        This means that all runnable code is ran at one point or another from here.
+        Similar to main or runnable with frame by frame implementation.
+
+        @author Joshua Steward
+        @version 1.0 11/7/2016
+    */
+    void Update ()
     {
         progressInfection();
-        
 	}
 
+    /**
+    Virus Simulation Project - Software Engineering Comp 350
+    Infection.cs
+    Purpose: Checks if distance from player is sufficient to be infected.
+        If true, global infection for this object is flagged. Called from OnMouseDown.
+
+    @author Joshua Steward
+    @version 1.0 11/7/2016
+    */
     void checkForInfection()
     {
         if(Vector3.Distance(transform.position, playerReference.transform.position) <= 2.0)
         {
             infected = true;
-            //Debug.Log("I've been infected!");
-            //currentColor = Color.blue
-          
-            //renderer.color = currentColor;
-            //renderer.material.SetColor("_NewColor", Color.red);
-            //Destroy(gameObject);
-        }
-        else
-        {
-            //Debug.Log("Too far away!");
         }
     }
 
+    /**
+    Virus Simulation Project - Software Engineering Comp 350
+    Infection.cs
+    Purpose: Triggered when the mouse is clicked. If infected is not flagged, will call checkForInfection.
+
+    @author Joshua Steward
+    @version 1.0 11/7/2016
+    */
     void OnMouseDown()
     {
-        //Debug.Log("I got clicked!");
         if(!infected)
         {
             checkForInfection();
         }
     }
 
-    void OnMouseOver()
-    {
-        //Debug.Log("The Mouse is over me! HEEEPPP!!");
-    }
+    /**
+    Virus Simulation Project - Software Engineering Comp 350
+    Infection.cs
+    Purpose: Called from update. If infected is flagged, will progress visual infection using
+        RGBA color values. When infection reaches a certain point, objecet is destroyed.
+
+    @author Joshua Steward
+    @version 1.0 11/7/2016
+    */
     void progressInfection()
     {
         if (infected)
         {
-            //if they are infected
-            //progress infection
-            //GetComponent<Renderer>().color = Color.Lerp(GetComponent<Renderer>().color, Color.red, 0.001f);
-            //R = GetComponent<Renderer>().color.r;
-            if (1 - R <= 0.05)
+            //if they are infected, progress infection
+            renderer.color = Color.Lerp(renderer.color, Color.red, 0.001f);
+            R = renderer.color.r;
+            G = renderer.color.g;
+            B = renderer.color.b;
+            A = renderer.color.a;
+            if (G <= 0.05)
             {
                 gameManagerInstance.aiList.Remove(gameObject);
                 Destroy(gameObject);
-
             }
-            //G = GetComponent<Renderer>().color.g;
-            //B = GetComponent<Renderer>().color.b;
-            //A = GetComponent<Renderer>().color.a;
+            
         }
     }
 }

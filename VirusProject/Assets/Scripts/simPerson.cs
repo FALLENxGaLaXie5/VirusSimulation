@@ -1,51 +1,115 @@
-﻿using UnityEngine;
+﻿/**
+    Virus Simulation Project - Software Engineering Comp 350
+    simPerson.cs
+    Purpose: Holds information about the AI, including destination queues and patrol points, 
+        along with animation data.
+
+    @author Joshua Steward
+    @version 1.0 11/7/2016
+*/
+
+using UnityEngine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 
 public class simPerson : MonoBehaviour
 {
+
+    //references instance of Game Manager
     GameManager gameManagerInstance;
-	// Use this for initialization
+    
+    //references target position
 	public Transform target;
+
+    //go object
     private GameObject gO;
+
+    //speed of this AI object
     public float speed;
+
+    //capacity of destination queue
     public int destCapacity;
+
+    //next destination in queue
     public DestSlot nextDest;
+
+    //current waypoint - used in patrol
     public GameObject currentWaypoint;
+
+    //Enum - Destination enum
     public enum Destination
     {
         Club, Gamestop, Frys, Food, Church, Coffee, Home, School
     };
+
+    //Enum - people type enum
     public enum PeopleType
     {
         Nerd, WorkAHolic, Parent, Child, HabitualEater, Partier
     };
+
+    //Enum - current state enum
     public enum State
     {
         Walking, Waiting, Detection
     };
 
+    //current State
     public State myState;
 
+    //queue of destinations
     public List<DestSlot> myDestinations = new List<DestSlot>();
+
+    //array of current patrolPoints
     public int[] patrolPoints;
+
+    //wayPoint string literals
     public string wayPointTrack;
 
     //Used for patrol
     private int wayPointNumber;
+
+    //cyclic indicator
     public bool oncePerCycle = true;
+
+    //person type (need to re-implement as enum state)
     public int myType;
 
+
+    /**
+        Virus Simulation Project - Software Engineering Comp 350
+        simPerson.cs
+        Purpose: Holds information about the destination slots used to queue patrol points for AI.
+            Including Dest as an int and the waitTime for each destination.
+
+        @author Joshua Steward
+        @version 1.0 11/7/2016
+    */
     public class DestSlot : object
     {
+        //dest int
         public int Dest { get; set; }
+        //wait time at destination
         public int WaitTime { get; set; }
+
+        /**
+            Constructor for this object
+
+            @param dest The destination indicator
+            @param waitTime The waitTime for this destination
+        */
         public DestSlot(int dest, int waitTime)
         {
             Dest = dest;
             WaitTime = waitTime;
         }
+
+        /**
+            Will compare two destination slots for equality
+            
+            @param obj The obj to compare for equality
+        */
         public override bool Equals(object obj)
         {
             if(obj == null)
@@ -62,6 +126,11 @@ public class simPerson : MonoBehaviour
             return (Dest == d.Dest) && (WaitTime == d.WaitTime);
         }
 
+        /**
+            Will compare two destination slots for equality (overrider)
+            
+            @param des The obj to compare for equality
+        */
         public bool Equals(DestSlot des)
         {
             if((object)des == null)
@@ -72,11 +141,22 @@ public class simPerson : MonoBehaviour
             return (Dest == des.Dest) && (WaitTime == des.WaitTime);
         }
 
+        /**
+            Converts object to string form
+            
+            @return string String form of DestSlot
+        */
         public override string ToString()
         {
             return "DestSlot: " + Dest + " - Wait Time: " + WaitTime;
         }
 
+
+        /**
+            Will compare two destination slots for equality
+            
+            @return hash The hashed slaying hasher of the hash code
+        */
         public override int GetHashCode()
         {
             return Dest ^ WaitTime;
@@ -85,10 +165,27 @@ public class simPerson : MonoBehaviour
 
 
 
+    /**
+        Virus Simulation Project - Software Engineering Comp 350
+        simPerson.cs
+        Purpose: Holds information about the state of the AI
+
+        @author Joshua Steward
+        @version 1.0 11/7/2016
+    */
     public class MyState
     {
+        //message to be sent
         public string Message { get; set; }
+        //state
         public int State { get; set; }
+
+        /**
+            Constructor for this object
+
+            @param message The string message to be sent
+            @param state The state of the AI
+        */
         public MyState(string message, int state)
         {
             Message = message;
@@ -98,7 +195,10 @@ public class simPerson : MonoBehaviour
 
 
 
+    /**
+    Purpose: Initialization Function. Initializes global variables. Similar to constructors.
 
+    */
     void Start()
     {
         patrolPoints = new int[6];

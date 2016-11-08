@@ -3,18 +3,39 @@ using System.Collections;
 
 public class destinationTalk : MonoBehaviour
 {
+    //flag for whether this destination building will show text
     public bool talk;
-    // Use this for initialization
+    
+    //text game object
     TextMesh text;
     GameObject text1;
+
+    /**
+        Virus Simulation Project - Software Engineering Comp 350
+        destinationTalk.cs
+        Purpose: Initialization Function. Initializes global variables. Similar to constructors.
+
+        @author Joshua Steward
+        @version 1.0 11/7/2016
+    */
     void Start ()
     {
         text = gameObject.GetComponentInChildren(typeof(TextMesh)) as TextMesh;
         talk = false;
     }
-	
-	// Update is called once per frame
-	void Update ()
+
+    /**
+        Virus Simulation Project - Software Engineering Comp 350
+        destinationTalk.cs
+        Purpose: Update is called at the beginning of every frame at run time.
+        This means that all runnable code is ran at one point or another from here.
+        Similar to main or runnable with frame by frame implementation.
+        //Sets destination debugging code.
+
+        @author Joshua Steward
+        @version 1.0 11/7/2016
+    */
+    void Update ()
     {
         if(text != null)
         {

@@ -3,93 +3,40 @@ using System.Collections;
 
 public class PlayerMobility : MonoBehaviour
 {
-    /*
+
+    //Speed that is applied to force for player physics
     public float speed;
-    public float speedCopy;
-    private Rigidbody2D PlayerObject;
 
-    Animator animator;
-    void Start ()
-    {
-        PlayerObject = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
-        speedCopy = speed;
-    }
-
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if(other.gameObject.tag == "AI")
-        {
-            simPerson person = other.gameObject.GetComponent<simPerson>();
-            person.myState = simPerson.State.Detection;
-            person.myDestinations.Clear();
-            //Debug.Log("Player Detected!");
-            //Debug.Log("My new state is " + person.myState);
-        }
-    }
-    
-    void FixedUpdate()
-    {
-        //float inputX = Input.GetAxis("Horizontal");
-        float inputY = Input.GetAxis("Vertical");
-        if(inputY > 0)
-        {
-            speedCopy = speed;
-            Vector3 mouseScreen = Input.mousePosition;
-            Vector3 targetPos = Camera.main.ScreenToWorldPoint(mouseScreen);
-            mouseScreen = new Vector3(mouseScreen.x, mouseScreen.y, 0);
-            PlayerObject.velocity = (mouseScreen - transform.position) * speedCopy;
-            //Vector3 movement = new Vector3(mouseScreen.x, mouseScreen.y, 0);
-            //PlayerObject.velocity = movement * speed;
-            //PlayerObject.velocity = (((transform.right * mouseScreen.x) + (transform.forward * mouseScreen.y))/Time.deltaTime) * speedCopy;
-            //mouseScreen.z = -Camera.main.transform.position.z;
-            //mouseScreen = Camera.main.ScreenToWorldPoint(mouseScreen);
-            //Vector3 dir = mouseScreen - transform.position;
-            //PlayerObject.AddForce(dir * speedCopy);
-        }
-        else
-        {
-            PlayerObject.velocity = Vector2.zero;
-            speedCopy = 0;
-        }
-        
-        //Vector3 movement = new Vector3(inputX, inputY, 0);
-        
-        if (PlayerObject.velocity == Vector2.zero)
-        {
-            animator.SetBool("idle", true);
-        }
-        else
-        {
-            animator.SetBool("idle", false);
-        }
-    }
-    
-    
-
-        
-    void Update()
-    {
-        if (Input.GetMouseButton(1))
-        {
-            Vector3 mousePosition = Input.mousePosition;
-            mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
-            transform.position = Vector2.Lerp(transform.position, mousePosition, speed);
-        }
-    }
-    
-    */
-    public float speed;
+    //original speed is manipulated - hence copy is stored
     private float speedCopy;
+
+    //Increased speed for running capabilities
     public float increasedSpeed;
+
+    //Reference for animator component - will control player animations
     Animator animator;
 
+    //Position of target - usually the mouse cursor
     private Vector3 targetPosition;
+
+    //Flag for if player is moving
     private bool isMoving;
+
+    //Reference the Rigid Body of player - hub for the player physics, which will be used to add force and change velocity on player.
     Rigidbody2D playerObject;
 
+    //Input constant
     const int BUTTON_FOR_MOVEMENT = 1;
 
+
+    /**
+        Virus Simulation Project - Software Engineering Comp 350
+        PlayerMobility.cs
+        Purpose: Initialization Function. Initializes global variables. Similar to constructors.
+
+        @author Joshua Steward
+        @version 1.0 11/7/2016
+    */
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -99,6 +46,15 @@ public class PlayerMobility : MonoBehaviour
         speedCopy = speed;
     }
 
+    /**
+        Virus Simulation Project - Software Engineering Comp 350
+        PlayerMobility.cs
+        Purpose: Detects if an AI is close enough to player to detect him. If so, puts AI into detection state, and clears destinations.
+
+        @param other The 2D collider that is attached to another gameObject that collides with this game object
+        @author Joshua Steward
+        @version 1.0 11/7/2016
+    */
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "AI")
@@ -106,11 +62,22 @@ public class PlayerMobility : MonoBehaviour
             simPerson person = other.gameObject.GetComponent<simPerson>();
             person.myState = simPerson.State.Detection;
             person.myDestinations.Clear();
-            //Debug.Log("Player Detected!");
-            //Debug.Log("My new state is " + person.myState);
         }
     }
 
+    /**
+        Virus Simulation Project - Software Engineering Comp 350
+        PlayerMobility.cs
+        Purpose: Update is called at the beginning of every frame at run time.
+        This means that all runnable code is ran at one point or another from here.
+        Similar to main or runnable with frame by frame implementation.
+        Here, update will be used to get input, and if specific input is inputted, it will set the 
+            target position for the player to move to, along with increased or decreased speeds and changes
+            in the current animations.
+
+        @author Joshua Steward
+        @version 1.0 11/7/2016
+    */
     void Update()
     {      
         if((Input.GetMouseButton(BUTTON_FOR_MOVEMENT) && Input.GetAxis("Fire3") > 0) || (Input.GetKey("w") && Input.GetAxis("Fire3") > 0))
@@ -137,6 +104,16 @@ public class PlayerMobility : MonoBehaviour
         }
     }
 
+    /**
+        Virus Simulation Project - Software Engineering Comp 350
+        PlayerMobility.cs
+        Purpose: Like update, FixedUpdate is called every frame. However, it is called at the END
+            of every frame, which is where physics calculations are generally made. 
+        Here, we check if isMoving is flagged. If so, we call moveplayer.
+
+        @author Joshua Steward
+        @version 1.0 11/7/2016
+    */
     void FixedUpdate()
     {
         if (isMoving)
@@ -145,12 +122,32 @@ public class PlayerMobility : MonoBehaviour
         }
     }
 
+    /**
+        Virus Simulation Project - Software Engineering Comp 350
+        PlayerMobility.cs
+        Purpose: Sets target position global to where, from the camera's perspective, the mouse cursor's
+            position is.
+        Sets isMoving flag.
+
+        @author Joshua Steward
+        @version 1.0 11/7/2016
+    */
     void SetTargetPosition()
     {
         targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         isMoving = true;
     }
 
+    /**
+        Virus Simulation Project - Software Engineering Comp 350
+        PlayerMobility.cs
+        Purpose: Calculates a normalized direction based off of the target position's coordinates. 
+        Performs physics calculations - adds force with param DIRECTION * SPEED. 
+        Add force takes into account the 1) Mass on the rigid body and 2) The linear and angular velocities on the rigid bodies
+
+        @author Joshua Steward
+        @version 1.0 11/7/2016
+    */
     void MovePlayer()
     {
         Vector2 direction = (targetPosition - transform.position).normalized;
