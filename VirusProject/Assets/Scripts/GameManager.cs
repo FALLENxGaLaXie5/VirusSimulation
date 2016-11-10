@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     private int initialCount;
 
     //current number of AI
-    private int count;
+    public int count;
 
     //array of AI objects
     private GameObject[] AI;

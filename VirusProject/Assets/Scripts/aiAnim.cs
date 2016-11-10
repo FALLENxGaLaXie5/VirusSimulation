@@ -1,4 +1,13 @@
-﻿using UnityEngine;
+﻿/**
+    Virus Simulation Project - Software Engineering Comp 350
+    aiAnim.cs
+    Purpose: Initialization Function. Initializes global variables. Similar to constructors.
+
+    @author Joshua Steward
+    @version 1.0 11/7/2016
+*/
+
+using UnityEngine;
 using System.Collections;
 
 public class aiAnim : MonoBehaviour

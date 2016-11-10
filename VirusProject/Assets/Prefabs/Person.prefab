@@ -71,7 +71,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012244520592}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 16.61, y: 7.650258, z: 0}
+  m_LocalPosition: {x: 66.7, y: -5.29, z: 0}
   m_LocalScale: {x: 2.0569744, y: 2.0569744, z: 2.0569744}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -159,7 +159,7 @@ MonoBehaviour:
   patrolPoints: 
   wayPointTrack: A_Points
   oncePerCycle: 1
-  myType: 0
+  myType: 1
 --- !u!114 &114000011732027596
 MonoBehaviour:
   m_ObjectHideFlags: 1

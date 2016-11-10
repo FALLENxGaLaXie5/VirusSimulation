@@ -140,8 +140,7 @@ public class Infection : MonoBehaviour
             {
                 gameManagerInstance.aiList.Remove(gameObject);
                 Destroy(gameObject);
-            }
-            
+            } 
         }
     }
 }

@@ -22,6 +22,14 @@ public class Transition2 : MonoBehaviour
         {
             ExitPress();
         }
+        if(quitMenu.enabled && Input.GetKeyDown("y"))
+        {
+            transitionScene();
+        }
+        else if(quitMenu.enabled && Input.GetKeyDown("n"))
+        {
+            NoPress();
+        }
     }
 
     public void ExitPress()
