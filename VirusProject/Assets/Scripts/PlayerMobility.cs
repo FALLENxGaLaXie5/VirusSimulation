@@ -1,4 +1,13 @@
-﻿using UnityEngine;
+﻿/**
+    Virus Simulation Project - Software Engineering Comp 350
+    PlayerMobility.cs
+    Purpose: Player movement code. Uses physics processing to add force vectors and change velocities using these calculations.
+
+    @author Joshua Steward
+    @version 1.0 11/7/2016
+*/
+
+using UnityEngine;
 using System.Collections;
 
 public class PlayerMobility : MonoBehaviour
@@ -30,12 +39,7 @@ public class PlayerMobility : MonoBehaviour
 
 
     /**
-        Virus Simulation Project - Software Engineering Comp 350
-        PlayerMobility.cs
-        Purpose: Initialization Function. Initializes global variables. Similar to constructors.
-
-        @author Joshua Steward
-        @version 1.0 11/7/2016
+        Initialization Function. Initializes global variables. Similar to constructors.
     */
     void Start()
     {
@@ -47,13 +51,9 @@ public class PlayerMobility : MonoBehaviour
     }
 
     /**
-        Virus Simulation Project - Software Engineering Comp 350
-        PlayerMobility.cs
-        Purpose: Detects if an AI is close enough to player to detect him. If so, puts AI into detection state, and clears destinations.
-
+        Detects if an AI is close enough to player to detect him. If so, puts AI into detection state, and clears destinations.
+        
         @param other The 2D collider that is attached to another gameObject that collides with this game object
-        @author Joshua Steward
-        @version 1.0 11/7/2016
     */
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -66,17 +66,12 @@ public class PlayerMobility : MonoBehaviour
     }
 
     /**
-        Virus Simulation Project - Software Engineering Comp 350
-        PlayerMobility.cs
-        Purpose: Update is called at the beginning of every frame at run time.
+        Update is called at the beginning of every frame at run time.
         This means that all runnable code is ran at one point or another from here.
         Similar to main or runnable with frame by frame implementation.
         Here, update will be used to get input, and if specific input is inputted, it will set the 
             target position for the player to move to, along with increased or decreased speeds and changes
             in the current animations.
-
-        @author Joshua Steward
-        @version 1.0 11/7/2016
     */
     void Update()
     {      
@@ -105,14 +100,9 @@ public class PlayerMobility : MonoBehaviour
     }
 
     /**
-        Virus Simulation Project - Software Engineering Comp 350
-        PlayerMobility.cs
-        Purpose: Like update, FixedUpdate is called every frame. However, it is called at the END
+        Like update, FixedUpdate is called every frame. However, it is called at the END
             of every frame, which is where physics calculations are generally made. 
-        Here, we check if isMoving is flagged. If so, we call moveplayer.
-
-        @author Joshua Steward
-        @version 1.0 11/7/2016
+            Here, we check if isMoving is flagged. If so, we call moveplayer.
     */
     void FixedUpdate()
     {
@@ -123,14 +113,9 @@ public class PlayerMobility : MonoBehaviour
     }
 
     /**
-        Virus Simulation Project - Software Engineering Comp 350
-        PlayerMobility.cs
-        Purpose: Sets target position global to where, from the camera's perspective, the mouse cursor's
+        Sets target position global to where, from the camera's perspective, the mouse cursor's
             position is.
-        Sets isMoving flag.
-
-        @author Joshua Steward
-        @version 1.0 11/7/2016
+            Sets isMoving flag.
     */
     void SetTargetPosition()
     {
@@ -139,14 +124,9 @@ public class PlayerMobility : MonoBehaviour
     }
 
     /**
-        Virus Simulation Project - Software Engineering Comp 350
-        PlayerMobility.cs
-        Purpose: Calculates a normalized direction based off of the target position's coordinates. 
+        Calculates a normalized direction based off of the target position's coordinates. 
         Performs physics calculations - adds force with param DIRECTION * SPEED. 
         Add force takes into account the 1) Mass on the rigid body and 2) The linear and angular velocities on the rigid bodies
-
-        @author Joshua Steward
-        @version 1.0 11/7/2016
     */
     void MovePlayer()
     {

@@ -1,4 +1,13 @@
-﻿using UnityEngine;
+﻿/**
+        Virus Simulation Project - Software Engineering Comp 350
+        destinationTalk.cs
+        Purpose: Mainly used for debugging purposes. Will display text associated with different types of destinations.
+
+        @author Joshua Steward
+        @version 1.0 11/7/2016
+*/
+
+using UnityEngine;
 using System.Collections;
 
 public class destinationTalk : MonoBehaviour
@@ -8,15 +17,12 @@ public class destinationTalk : MonoBehaviour
     
     //text game object
     TextMesh text;
+
+    //text reference
     GameObject text1;
 
     /**
-        Virus Simulation Project - Software Engineering Comp 350
-        destinationTalk.cs
-        Purpose: Initialization Function. Initializes global variables. Similar to constructors.
-
-        @author Joshua Steward
-        @version 1.0 11/7/2016
+        Initialization Function. Initializes global variables. Similar to constructors.
     */
     void Start ()
     {
@@ -25,15 +31,10 @@ public class destinationTalk : MonoBehaviour
     }
 
     /**
-        Virus Simulation Project - Software Engineering Comp 350
-        destinationTalk.cs
-        Purpose: Update is called at the beginning of every frame at run time.
+        Update is called at the beginning of every frame at run time.
         This means that all runnable code is ran at one point or another from here.
         Similar to main or runnable with frame by frame implementation.
-        //Sets destination debugging code.
-
-        @author Joshua Steward
-        @version 1.0 11/7/2016
+        Sets destination debugging code.
     */
     void Update ()
     {

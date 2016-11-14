@@ -6,10 +6,10 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/MainMenuUI.unity
+    path: Assets/Scenes/TitleScene.unity
   - enabled: 1
     path: Assets/Scenes/Main.unity
   - enabled: 1
-    path: Assets/Scenes/TitleScene.unity
+    path: Assets/Scenes/MainMenuUI.unity
   - enabled: 1
     path: Assets/Scenes/HelpUI.unity
