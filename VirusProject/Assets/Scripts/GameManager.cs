@@ -1,7 +1,16 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
+
+/**
+To Implement:
+    Statistics - Number of AI alive vs. Original, percentage killed, end conditions, win progression bar.
+    Ammo and ammo pick-ups for virus cyllinders, so you can't just go around infecting everyone (could use pre-set spawn objects, and randomize spawns with an occupied script)
+    Make sure level design is solid
+    Go inside buildings - alternate scenes
+*/
 public class GameManager : MonoBehaviour
 {
     //initial count of number of AI
@@ -25,6 +34,7 @@ public class GameManager : MonoBehaviour
     //list of destination buildings
     public List<GameObject> destBuildings;
 
+    public Text scoreText;
     /**
     Virus Simulation Project - Software Engineering Comp 350
     GameManager.cs
@@ -40,6 +50,7 @@ public class GameManager : MonoBehaviour
         populateAI();
         initialCount = AI.Length;
         count = initialCount;
+        scoreText.text = "The Living: " + count + "\nPopulation: " + initialCount;
 	}
 
     /**
@@ -77,7 +88,8 @@ public class GameManager : MonoBehaviour
     void Update ()
     {
         count = aiList.Count;
-	}
+        scoreText.text = "The Living: " + count + "\nPopulation: " + initialCount;
+    }
 
     /**
         Virus Simulation Project - Software Engineering Comp 350
