@@ -1,0 +1,320 @@
+\hypertarget{classsim_person}{}\section{sim\+Person Class Reference}
+\label{classsim_person}\index{sim\+Person@{sim\+Person}}
+Inheritance diagram for sim\+Person\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classsim_person}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classsim_person_1_1_dest_slot}{Dest\+Slot}
+\item 
+class \hyperlink{classsim_person_1_1_my_state}{My\+State}
+\end{DoxyCompactItemize}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{classsim_person_a257596d5b7ccb0179724d7f571cd794d}{Destination} \{ \newline
+\hyperlink{classsim_person_a257596d5b7ccb0179724d7f571cd794daaeef646f76c57ed9084edddbb6365b9c}{Destination.\+Club}, 
+\hyperlink{classsim_person_a257596d5b7ccb0179724d7f571cd794da72d079ca5ce0fed7a1f448d3a794b15e}{Destination.\+Gamestop}, 
+\hyperlink{classsim_person_a257596d5b7ccb0179724d7f571cd794dad04a260b63d40d198636559613ef2c39}{Destination.\+Frys}, 
+\hyperlink{classsim_person_a257596d5b7ccb0179724d7f571cd794da0a38e7286ebbb560354992b3ce62be67}{Destination.\+Food}, 
+\newline
+\hyperlink{classsim_person_a257596d5b7ccb0179724d7f571cd794da7ec9aaa8ac320fa8b83c6f7aaa8c9ca1}{Destination.\+Church}, 
+\hyperlink{classsim_person_a257596d5b7ccb0179724d7f571cd794da3c09b8d09553786b799e02306e55c7ba}{Destination.\+Coffee}, 
+\hyperlink{classsim_person_a257596d5b7ccb0179724d7f571cd794da8cf04a9734132302f96da8e113e80ce5}{Destination.\+Home}, 
+\hyperlink{classsim_person_a257596d5b7ccb0179724d7f571cd794da955cd8691ca89a6baa6ea10c7787e604}{Destination.\+School}
+ \}
+\item 
+enum \hyperlink{classsim_person_a2966469724e979a6aeca2f3b1d40b622}{People\+Type} \{ \newline
+\hyperlink{classsim_person_a2966469724e979a6aeca2f3b1d40b622adabdb387ade6712237057f681b38bd12}{People\+Type.\+Nerd}, 
+\hyperlink{classsim_person_a2966469724e979a6aeca2f3b1d40b622a0b7fafd9bd19cc911b0499f3e1d73d30}{People\+Type.\+Work\+A\+Holic}, 
+\hyperlink{classsim_person_a2966469724e979a6aeca2f3b1d40b622a30269022e9d8f51beaabb52e5d0de2b7}{People\+Type.\+Parent}, 
+\hyperlink{classsim_person_a2966469724e979a6aeca2f3b1d40b622aa82fea383f121c803741f8de1c209734}{People\+Type.\+Child}, 
+\newline
+\hyperlink{classsim_person_a2966469724e979a6aeca2f3b1d40b622aa41523233bdde5831aa45f6b5805ec5c}{People\+Type.\+Habitual\+Eater}, 
+\hyperlink{classsim_person_a2966469724e979a6aeca2f3b1d40b622af60dd88837dbc3319c975946d982c8f8}{People\+Type.\+Partier}
+ \}
+\item 
+enum \hyperlink{classsim_person_a2e742c09e6786146fe250d0066fe78e9}{State} \{ \hyperlink{classsim_person_a2e742c09e6786146fe250d0066fe78e9adb6ea77c7cd8a86b17014c3b688fd1a1}{State.\+Walking}, 
+\hyperlink{classsim_person_a2e742c09e6786146fe250d0066fe78e9a5706de961fb376d701be6e7762d8b09c}{State.\+Waiting}, 
+\hyperlink{classsim_person_a2e742c09e6786146fe250d0066fe78e9a554eee4c195ae0dd1ccafbc75772b951}{State.\+Detection}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classsim_person_aca3d90fe7d83818e4ef9b8570b353965}{Patrol} ()
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Transform \hyperlink{classsim_person_a5db445fe5749d0b0165efeb3bd7b0ba9}{target}
+\item 
+float \hyperlink{classsim_person_a28e2b04758c3682f50ba01eb5d1740c0}{speed}
+\item 
+int \hyperlink{classsim_person_ac816cec7286f37dc4f4fa30d5c5d909c}{dest\+Capacity}
+\item 
+\hyperlink{classsim_person_1_1_dest_slot}{Dest\+Slot} \hyperlink{classsim_person_ae3bcceb05ae974887c5f6f68951f5dcc}{next\+Dest}
+\item 
+Game\+Object \hyperlink{classsim_person_a47b2bb1a902576614f65b7ecf1fa1bdd}{current\+Waypoint}
+\item 
+\hyperlink{classsim_person_a2e742c09e6786146fe250d0066fe78e9}{State} \hyperlink{classsim_person_aae85299b3299888345288c53bf991626}{my\+State}
+\item 
+List$<$ \hyperlink{classsim_person_1_1_dest_slot}{Dest\+Slot} $>$ \hyperlink{classsim_person_a1459d9a83816086b302d5fb609855ed7}{my\+Destinations} = new List$<$\hyperlink{classsim_person_1_1_dest_slot}{Dest\+Slot}$>$()
+\item 
+int \mbox{[}$\,$\mbox{]} \hyperlink{classsim_person_aebd6a40f59fce0a78e71599b0b39bc67}{patrol\+Points}
+\item 
+string \hyperlink{classsim_person_af45d2902026e35903cebbe51f66caf30}{way\+Point\+Track}
+\item 
+bool \hyperlink{classsim_person_a21ac457e8040d80854cb5b1ab59bfd6f}{once\+Per\+Cycle} = true
+\item 
+int \hyperlink{classsim_person_aefacfa94adcf92832728769bb58895bc}{my\+Type}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 16 of file sim\+Person.\+cs.
+
+
+
+\subsection{Member Enumeration Documentation}
+\hypertarget{classsim_person_a257596d5b7ccb0179724d7f571cd794d}{}\label{classsim_person_a257596d5b7ccb0179724d7f571cd794d} 
+\index{sim\+Person@{sim\+Person}!Destination@{Destination}}
+\index{Destination@{Destination}!sim\+Person@{sim\+Person}}
+\subsubsection{\texorpdfstring{Destination}{Destination}}
+{\footnotesize\ttfamily enum \hyperlink{classsim_person_a257596d5b7ccb0179724d7f571cd794d}{sim\+Person.\+Destination}\hspace{0.3cm}{\ttfamily [strong]}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Club@{Club}!sim\+Person@{sim\+Person}}\index{sim\+Person@{sim\+Person}!Club@{Club}}}\hypertarget{classsim_person_a257596d5b7ccb0179724d7f571cd794daaeef646f76c57ed9084edddbb6365b9c}{}\label{classsim_person_a257596d5b7ccb0179724d7f571cd794daaeef646f76c57ed9084edddbb6365b9c} 
+Club&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Gamestop@{Gamestop}!sim\+Person@{sim\+Person}}\index{sim\+Person@{sim\+Person}!Gamestop@{Gamestop}}}\hypertarget{classsim_person_a257596d5b7ccb0179724d7f571cd794da72d079ca5ce0fed7a1f448d3a794b15e}{}\label{classsim_person_a257596d5b7ccb0179724d7f571cd794da72d079ca5ce0fed7a1f448d3a794b15e} 
+Gamestop&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Frys@{Frys}!sim\+Person@{sim\+Person}}\index{sim\+Person@{sim\+Person}!Frys@{Frys}}}\hypertarget{classsim_person_a257596d5b7ccb0179724d7f571cd794dad04a260b63d40d198636559613ef2c39}{}\label{classsim_person_a257596d5b7ccb0179724d7f571cd794dad04a260b63d40d198636559613ef2c39} 
+Frys&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Food@{Food}!sim\+Person@{sim\+Person}}\index{sim\+Person@{sim\+Person}!Food@{Food}}}\hypertarget{classsim_person_a257596d5b7ccb0179724d7f571cd794da0a38e7286ebbb560354992b3ce62be67}{}\label{classsim_person_a257596d5b7ccb0179724d7f571cd794da0a38e7286ebbb560354992b3ce62be67} 
+Food&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Church@{Church}!sim\+Person@{sim\+Person}}\index{sim\+Person@{sim\+Person}!Church@{Church}}}\hypertarget{classsim_person_a257596d5b7ccb0179724d7f571cd794da7ec9aaa8ac320fa8b83c6f7aaa8c9ca1}{}\label{classsim_person_a257596d5b7ccb0179724d7f571cd794da7ec9aaa8ac320fa8b83c6f7aaa8c9ca1} 
+Church&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Coffee@{Coffee}!sim\+Person@{sim\+Person}}\index{sim\+Person@{sim\+Person}!Coffee@{Coffee}}}\hypertarget{classsim_person_a257596d5b7ccb0179724d7f571cd794da3c09b8d09553786b799e02306e55c7ba}{}\label{classsim_person_a257596d5b7ccb0179724d7f571cd794da3c09b8d09553786b799e02306e55c7ba} 
+Coffee&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Home@{Home}!sim\+Person@{sim\+Person}}\index{sim\+Person@{sim\+Person}!Home@{Home}}}\hypertarget{classsim_person_a257596d5b7ccb0179724d7f571cd794da8cf04a9734132302f96da8e113e80ce5}{}\label{classsim_person_a257596d5b7ccb0179724d7f571cd794da8cf04a9734132302f96da8e113e80ce5} 
+Home&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{School@{School}!sim\+Person@{sim\+Person}}\index{sim\+Person@{sim\+Person}!School@{School}}}\hypertarget{classsim_person_a257596d5b7ccb0179724d7f571cd794da955cd8691ca89a6baa6ea10c7787e604}{}\label{classsim_person_a257596d5b7ccb0179724d7f571cd794da955cd8691ca89a6baa6ea10c7787e604} 
+School&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line 41 of file sim\+Person.\+cs.
+
+\hypertarget{classsim_person_a2966469724e979a6aeca2f3b1d40b622}{}\label{classsim_person_a2966469724e979a6aeca2f3b1d40b622} 
+\index{sim\+Person@{sim\+Person}!People\+Type@{People\+Type}}
+\index{People\+Type@{People\+Type}!sim\+Person@{sim\+Person}}
+\subsubsection{\texorpdfstring{People\+Type}{PeopleType}}
+{\footnotesize\ttfamily enum \hyperlink{classsim_person_a2966469724e979a6aeca2f3b1d40b622}{sim\+Person.\+People\+Type}\hspace{0.3cm}{\ttfamily [strong]}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Nerd@{Nerd}!sim\+Person@{sim\+Person}}\index{sim\+Person@{sim\+Person}!Nerd@{Nerd}}}\hypertarget{classsim_person_a2966469724e979a6aeca2f3b1d40b622adabdb387ade6712237057f681b38bd12}{}\label{classsim_person_a2966469724e979a6aeca2f3b1d40b622adabdb387ade6712237057f681b38bd12} 
+Nerd&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Work\+A\+Holic@{Work\+A\+Holic}!sim\+Person@{sim\+Person}}\index{sim\+Person@{sim\+Person}!Work\+A\+Holic@{Work\+A\+Holic}}}\hypertarget{classsim_person_a2966469724e979a6aeca2f3b1d40b622a0b7fafd9bd19cc911b0499f3e1d73d30}{}\label{classsim_person_a2966469724e979a6aeca2f3b1d40b622a0b7fafd9bd19cc911b0499f3e1d73d30} 
+Work\+A\+Holic&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Parent@{Parent}!sim\+Person@{sim\+Person}}\index{sim\+Person@{sim\+Person}!Parent@{Parent}}}\hypertarget{classsim_person_a2966469724e979a6aeca2f3b1d40b622a30269022e9d8f51beaabb52e5d0de2b7}{}\label{classsim_person_a2966469724e979a6aeca2f3b1d40b622a30269022e9d8f51beaabb52e5d0de2b7} 
+Parent&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Child@{Child}!sim\+Person@{sim\+Person}}\index{sim\+Person@{sim\+Person}!Child@{Child}}}\hypertarget{classsim_person_a2966469724e979a6aeca2f3b1d40b622aa82fea383f121c803741f8de1c209734}{}\label{classsim_person_a2966469724e979a6aeca2f3b1d40b622aa82fea383f121c803741f8de1c209734} 
+Child&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Habitual\+Eater@{Habitual\+Eater}!sim\+Person@{sim\+Person}}\index{sim\+Person@{sim\+Person}!Habitual\+Eater@{Habitual\+Eater}}}\hypertarget{classsim_person_a2966469724e979a6aeca2f3b1d40b622aa41523233bdde5831aa45f6b5805ec5c}{}\label{classsim_person_a2966469724e979a6aeca2f3b1d40b622aa41523233bdde5831aa45f6b5805ec5c} 
+Habitual\+Eater&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Partier@{Partier}!sim\+Person@{sim\+Person}}\index{sim\+Person@{sim\+Person}!Partier@{Partier}}}\hypertarget{classsim_person_a2966469724e979a6aeca2f3b1d40b622af60dd88837dbc3319c975946d982c8f8}{}\label{classsim_person_a2966469724e979a6aeca2f3b1d40b622af60dd88837dbc3319c975946d982c8f8} 
+Partier&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line 47 of file sim\+Person.\+cs.
+
+\hypertarget{classsim_person_a2e742c09e6786146fe250d0066fe78e9}{}\label{classsim_person_a2e742c09e6786146fe250d0066fe78e9} 
+\index{sim\+Person@{sim\+Person}!State@{State}}
+\index{State@{State}!sim\+Person@{sim\+Person}}
+\subsubsection{\texorpdfstring{State}{State}}
+{\footnotesize\ttfamily enum \hyperlink{classsim_person_a2e742c09e6786146fe250d0066fe78e9}{sim\+Person.\+State}\hspace{0.3cm}{\ttfamily [strong]}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Walking@{Walking}!sim\+Person@{sim\+Person}}\index{sim\+Person@{sim\+Person}!Walking@{Walking}}}\hypertarget{classsim_person_a2e742c09e6786146fe250d0066fe78e9adb6ea77c7cd8a86b17014c3b688fd1a1}{}\label{classsim_person_a2e742c09e6786146fe250d0066fe78e9adb6ea77c7cd8a86b17014c3b688fd1a1} 
+Walking&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Waiting@{Waiting}!sim\+Person@{sim\+Person}}\index{sim\+Person@{sim\+Person}!Waiting@{Waiting}}}\hypertarget{classsim_person_a2e742c09e6786146fe250d0066fe78e9a5706de961fb376d701be6e7762d8b09c}{}\label{classsim_person_a2e742c09e6786146fe250d0066fe78e9a5706de961fb376d701be6e7762d8b09c} 
+Waiting&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Detection@{Detection}!sim\+Person@{sim\+Person}}\index{sim\+Person@{sim\+Person}!Detection@{Detection}}}\hypertarget{classsim_person_a2e742c09e6786146fe250d0066fe78e9a554eee4c195ae0dd1ccafbc75772b951}{}\label{classsim_person_a2e742c09e6786146fe250d0066fe78e9a554eee4c195ae0dd1ccafbc75772b951} 
+Detection&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line 53 of file sim\+Person.\+cs.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classsim_person_aca3d90fe7d83818e4ef9b8570b353965}{}\label{classsim_person_aca3d90fe7d83818e4ef9b8570b353965} 
+\index{sim\+Person@{sim\+Person}!Patrol@{Patrol}}
+\index{Patrol@{Patrol}!sim\+Person@{sim\+Person}}
+\subsubsection{\texorpdfstring{Patrol()}{Patrol()}}
+{\footnotesize\ttfamily void sim\+Person.\+Patrol (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Sets pathfinding class variables, speeds, and compares to destination. On quick transitions between destinations and states, will run a test to make sure there are destinations available. 
+
+Definition at line 288 of file sim\+Person.\+cs.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classsim_person_a47b2bb1a902576614f65b7ecf1fa1bdd}{}\label{classsim_person_a47b2bb1a902576614f65b7ecf1fa1bdd} 
+\index{sim\+Person@{sim\+Person}!current\+Waypoint@{current\+Waypoint}}
+\index{current\+Waypoint@{current\+Waypoint}!sim\+Person@{sim\+Person}}
+\subsubsection{\texorpdfstring{current\+Waypoint}{currentWaypoint}}
+{\footnotesize\ttfamily Game\+Object sim\+Person.\+current\+Waypoint}
+
+
+
+Definition at line 38 of file sim\+Person.\+cs.
+
+\hypertarget{classsim_person_ac816cec7286f37dc4f4fa30d5c5d909c}{}\label{classsim_person_ac816cec7286f37dc4f4fa30d5c5d909c} 
+\index{sim\+Person@{sim\+Person}!dest\+Capacity@{dest\+Capacity}}
+\index{dest\+Capacity@{dest\+Capacity}!sim\+Person@{sim\+Person}}
+\subsubsection{\texorpdfstring{dest\+Capacity}{destCapacity}}
+{\footnotesize\ttfamily int sim\+Person.\+dest\+Capacity}
+
+
+
+Definition at line 32 of file sim\+Person.\+cs.
+
+\hypertarget{classsim_person_a1459d9a83816086b302d5fb609855ed7}{}\label{classsim_person_a1459d9a83816086b302d5fb609855ed7} 
+\index{sim\+Person@{sim\+Person}!my\+Destinations@{my\+Destinations}}
+\index{my\+Destinations@{my\+Destinations}!sim\+Person@{sim\+Person}}
+\subsubsection{\texorpdfstring{my\+Destinations}{myDestinations}}
+{\footnotesize\ttfamily List$<$\hyperlink{classsim_person_1_1_dest_slot}{Dest\+Slot}$>$ sim\+Person.\+my\+Destinations = new List$<$\hyperlink{classsim_person_1_1_dest_slot}{Dest\+Slot}$>$()}
+
+
+
+Definition at line 62 of file sim\+Person.\+cs.
+
+\hypertarget{classsim_person_aae85299b3299888345288c53bf991626}{}\label{classsim_person_aae85299b3299888345288c53bf991626} 
+\index{sim\+Person@{sim\+Person}!my\+State@{my\+State}}
+\index{my\+State@{my\+State}!sim\+Person@{sim\+Person}}
+\subsubsection{\texorpdfstring{my\+State}{myState}}
+{\footnotesize\ttfamily \hyperlink{classsim_person_a2e742c09e6786146fe250d0066fe78e9}{State} sim\+Person.\+my\+State}
+
+
+
+Definition at line 56 of file sim\+Person.\+cs.
+
+\hypertarget{classsim_person_aefacfa94adcf92832728769bb58895bc}{}\label{classsim_person_aefacfa94adcf92832728769bb58895bc} 
+\index{sim\+Person@{sim\+Person}!my\+Type@{my\+Type}}
+\index{my\+Type@{my\+Type}!sim\+Person@{sim\+Person}}
+\subsubsection{\texorpdfstring{my\+Type}{myType}}
+{\footnotesize\ttfamily int sim\+Person.\+my\+Type}
+
+
+
+Definition at line 77 of file sim\+Person.\+cs.
+
+\hypertarget{classsim_person_ae3bcceb05ae974887c5f6f68951f5dcc}{}\label{classsim_person_ae3bcceb05ae974887c5f6f68951f5dcc} 
+\index{sim\+Person@{sim\+Person}!next\+Dest@{next\+Dest}}
+\index{next\+Dest@{next\+Dest}!sim\+Person@{sim\+Person}}
+\subsubsection{\texorpdfstring{next\+Dest}{nextDest}}
+{\footnotesize\ttfamily \hyperlink{classsim_person_1_1_dest_slot}{Dest\+Slot} sim\+Person.\+next\+Dest}
+
+
+
+Definition at line 35 of file sim\+Person.\+cs.
+
+\hypertarget{classsim_person_a21ac457e8040d80854cb5b1ab59bfd6f}{}\label{classsim_person_a21ac457e8040d80854cb5b1ab59bfd6f} 
+\index{sim\+Person@{sim\+Person}!once\+Per\+Cycle@{once\+Per\+Cycle}}
+\index{once\+Per\+Cycle@{once\+Per\+Cycle}!sim\+Person@{sim\+Person}}
+\subsubsection{\texorpdfstring{once\+Per\+Cycle}{oncePerCycle}}
+{\footnotesize\ttfamily bool sim\+Person.\+once\+Per\+Cycle = true}
+
+
+
+Definition at line 74 of file sim\+Person.\+cs.
+
+\hypertarget{classsim_person_aebd6a40f59fce0a78e71599b0b39bc67}{}\label{classsim_person_aebd6a40f59fce0a78e71599b0b39bc67} 
+\index{sim\+Person@{sim\+Person}!patrol\+Points@{patrol\+Points}}
+\index{patrol\+Points@{patrol\+Points}!sim\+Person@{sim\+Person}}
+\subsubsection{\texorpdfstring{patrol\+Points}{patrolPoints}}
+{\footnotesize\ttfamily int \mbox{[}$\,$\mbox{]} sim\+Person.\+patrol\+Points}
+
+
+
+Definition at line 65 of file sim\+Person.\+cs.
+
+\hypertarget{classsim_person_a28e2b04758c3682f50ba01eb5d1740c0}{}\label{classsim_person_a28e2b04758c3682f50ba01eb5d1740c0} 
+\index{sim\+Person@{sim\+Person}!speed@{speed}}
+\index{speed@{speed}!sim\+Person@{sim\+Person}}
+\subsubsection{\texorpdfstring{speed}{speed}}
+{\footnotesize\ttfamily float sim\+Person.\+speed}
+
+
+
+Definition at line 29 of file sim\+Person.\+cs.
+
+\hypertarget{classsim_person_a5db445fe5749d0b0165efeb3bd7b0ba9}{}\label{classsim_person_a5db445fe5749d0b0165efeb3bd7b0ba9} 
+\index{sim\+Person@{sim\+Person}!target@{target}}
+\index{target@{target}!sim\+Person@{sim\+Person}}
+\subsubsection{\texorpdfstring{target}{target}}
+{\footnotesize\ttfamily Transform sim\+Person.\+target}
+
+
+
+Definition at line 23 of file sim\+Person.\+cs.
+
+\hypertarget{classsim_person_af45d2902026e35903cebbe51f66caf30}{}\label{classsim_person_af45d2902026e35903cebbe51f66caf30} 
+\index{sim\+Person@{sim\+Person}!way\+Point\+Track@{way\+Point\+Track}}
+\index{way\+Point\+Track@{way\+Point\+Track}!sim\+Person@{sim\+Person}}
+\subsubsection{\texorpdfstring{way\+Point\+Track}{wayPointTrack}}
+{\footnotesize\ttfamily string sim\+Person.\+way\+Point\+Track}
+
+
+
+Definition at line 68 of file sim\+Person.\+cs.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Virus\+Project/\+Assets/\+Scripts/\hyperlink{sim_person_8cs}{sim\+Person.\+cs}\end{DoxyCompactItemize}

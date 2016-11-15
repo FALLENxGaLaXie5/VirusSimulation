@@ -109,6 +109,7 @@ public class simPerson : MonoBehaviour
             Will compare two destination slots for equality
             
             @param obj The obj to compare for equality
+            @return bool Equality
         */
         public override bool Equals(object obj)
         {
@@ -130,6 +131,7 @@ public class simPerson : MonoBehaviour
             Will compare two destination slots for equality (overrider)
             
             @param des The obj to compare for equality
+            @return bool Equality
         */
         public bool Equals(DestSlot des)
         {
@@ -196,32 +198,29 @@ public class simPerson : MonoBehaviour
 
 
     /**
-    Purpose: Initialization Function. Initializes global variables. Similar to constructors.
-
+    Initialization Function. Initializes global variables. Similar to constructors.
     */
     void Start()
     {
         patrolPoints = new int[6];
         gameManagerInstance = GameManager.instance;
         myType = UnityEngine.Random.Range((int)PeopleType.Nerd, (int)PeopleType.Partier);
-        //test function
-        //myType = 0;
-        //Debug.Log("My type is: " + myType);
         myDestinations.Clear();
         allocateDestinations();
         destCapacity = 6;
         nextDest = myDestinations[0];
-        //Debug.Log("My first destination: " + nextDest.ToString());
         currentWaypoint = getDestinationWayPoint(nextDest);
         myState = State.Walking;
     }
 
-
-    void Awake()
-    {
-       
-    }
-
+    /**
+    Update is called at the beginning of every frame at run time.
+    This means that all runnable code is ran at one point or another from here.
+    Similar to main or runnable with frame by frame implementation.
+    Here, update will be used to copy in destination data for AI so it can be used for debugging. 
+        Will then switch control flow based on current state; if walking, it will continue to allocate destinations and patrol appropriately.
+        If detected player, will continue to allocate destinations for a runner and runAway.
+    */
     void Update()
     {
         copyArrayTest();
@@ -248,6 +247,9 @@ public class simPerson : MonoBehaviour
         }
      }
 
+    /**
+        Will add a new home destination to destination queue. Debugging info available.
+    */
     void allocateForRunner()
     {
         myDestinations.Add(new DestSlot((int)Destination.Home, 40));
@@ -255,6 +257,9 @@ public class simPerson : MonoBehaviour
         //Debug.Log("I have " + myDestinations.Count + " destinations!");
     }
 
+    /**
+        Sets pathfinding class variable data, speeds , and compares to target position.
+    */
     void runAway()
     {
         AILerp lerp = gameObject.GetComponent<AILerp>();
@@ -276,6 +281,10 @@ public class simPerson : MonoBehaviour
 
     }
 
+    /**
+    Sets pathfinding class variables, speeds, and compares to destination. On quick transitions between destinations and states,
+        will run a test to make sure there are destinations available.
+    */
     public void Patrol()
 	{
 		AILerp lerp = gameObject.GetComponent<AILerp> ();
@@ -300,7 +309,9 @@ public class simPerson : MonoBehaviour
         }
 	}
 
-
+    /**
+        Copies destinations array for debugging.
+    */
     void copyArrayTest()
     {
         patrolPoints = new int[myDestinations.Count];
@@ -311,6 +322,12 @@ public class simPerson : MonoBehaviour
         
     }
 
+    /**
+        Will search for the waypoint associated with the next destination
+
+        @param nextDest the next destination to find waypoint for
+        @return waypoint for the next destination
+    */
     GameObject getDestinationWayPoint(DestSlot nextDest)
     {
         int destNum = nextDest.Dest;
@@ -470,6 +487,9 @@ public class simPerson : MonoBehaviour
         return null;
     }
 
+    /**
+        Will allocate destinations based on person type
+    */
     void allocateDestinations()
     {
         switch(myType)
@@ -504,6 +524,11 @@ public class simPerson : MonoBehaviour
         }
     }
 
+    /**
+        Will check if destination is already in queue and add or deallocate accordingly.
+
+        @param newDest destination to be checked against
+    */
     void checkToAddDest(DestSlot newDest)
     {
         if (myDestinations.Count != 0)
@@ -525,6 +550,9 @@ public class simPerson : MonoBehaviour
         }
     }
     
+    /**
+        Allocates destinations for nerd person type
+    */
     void nerdDestiny()
     {
             int newDestNum = UnityEngine.Random.Range(0, 22);
@@ -559,7 +587,9 @@ public class simPerson : MonoBehaviour
             checkToAddDest(new DestSlot(newDestNum, waitTime));
     }
 
-    
+    /**
+        Allocates destinations for worker person type
+    */
     void workerDestiny()
     {
         int newDestNum = UnityEngine.Random.Range(0, 22);
@@ -594,7 +624,9 @@ public class simPerson : MonoBehaviour
         checkToAddDest(new DestSlot(newDestNum, waitTime));
     }
 
-
+    /**
+        Allocates destinations for child person type
+    */
     void childDestiny()
     {
         int newDestNum = UnityEngine.Random.Range(0, 22);
@@ -628,6 +660,10 @@ public class simPerson : MonoBehaviour
         }
         checkToAddDest(new DestSlot(newDestNum, waitTime));
     }
+
+    /**
+        Allocates destinations for parent person type
+    */
     void parentDestiny()
     {
         int newDestNum = UnityEngine.Random.Range(0, 22);
@@ -661,6 +697,10 @@ public class simPerson : MonoBehaviour
         }
         checkToAddDest(new DestSlot(newDestNum, waitTime));
     }
+
+    /**
+        Allocates destinations for eater person type
+    */
     void eaterDestiny()
     {
         int newDestNum = UnityEngine.Random.Range(0, 22);
@@ -694,6 +734,10 @@ public class simPerson : MonoBehaviour
         }
         checkToAddDest(new DestSlot(newDestNum, waitTime));
     }
+
+    /**
+        Allocates destinations for partier person type
+    */
     void partyDestiny()
     {
         int newDestNum = UnityEngine.Random.Range(0, 22);
