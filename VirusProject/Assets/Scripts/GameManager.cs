@@ -9,6 +9,7 @@
 
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -37,6 +38,7 @@ public class GameManager : MonoBehaviour
 
     //score UI text reference
     public Text scoreText;
+
 
     /**
     Initialization Function. Initializes global variables. Similar to constructors.
@@ -77,6 +79,10 @@ public class GameManager : MonoBehaviour
     {
         count = aiList.Count;
         scoreText.text = "The Living: " + count + "\nPopulation: " + initialCount;
+        if(count < 2)
+        {
+            SceneManager.LoadScene("TitleScene");
+        }
     }
 
     /**

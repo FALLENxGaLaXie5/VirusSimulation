@@ -58,7 +58,7 @@ public class Infection : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     { 
         int prob = Random.Range(0, 100);
-        if(infected && other.gameObject.tag == "AI" && prob <= 2)
+        if(infected && other.gameObject.tag == "AI" && prob <= 10)
         {
             Infection inf = other.gameObject.GetComponent<Infection>();
             inf.infected = true;
