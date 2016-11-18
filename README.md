@@ -5,3 +5,6 @@ Virus Game for Channel Islands Software Engineering Class
 
 Presentation Link(Also contained in Presentation_Libraries_API directory):
 http://prezi.com/0a3s43xkgtds/?utm_campaign=share&utm_medium=copy
+
+
+(Instructions in End User Documentation) - Run Virus Simulation by Downloading respective build from Builds folder.
