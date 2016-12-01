@@ -5,7 +5,13 @@
     Generates probability which is used to infect the game object attached to other collider.
     Sets infected flags. Will be attached to all AI for potential infection.
 
+    @author Joshua Steward
     @author Zane Gittins
+    @author Zachery Van Es
+    @author Lowell Batacan
+    @author Jessica Perez
+    @author Andrew Walters
+    
     @version 1.0 11/7/2016
 */
 

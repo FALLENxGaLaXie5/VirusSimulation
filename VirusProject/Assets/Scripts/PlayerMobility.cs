@@ -4,6 +4,12 @@
     Purpose: Player movement code. Uses physics processing to add force vectors and change velocities using these calculations.
 
     @author Joshua Steward
+    @author Zane Gittins
+    @author Zachery Van Es
+    @author Lowell Batacan
+    @author Jessica Perez
+    @author Andrew Walters
+    
     @version 1.0 11/7/2016
 */
 

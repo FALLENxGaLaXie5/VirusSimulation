@@ -4,6 +4,12 @@
         Purpose: To attach camera object to player object without altering camera rotation when input is redirected.
 
         @author Joshua Steward
+        @author Zane Gittins
+        @author Zachery Van Es
+        @author Lowell Batacan
+        @author Jessica Perez
+        @author Andrew Walters
+
         @version 1.0 11/7/2016
 */
 

@@ -3,7 +3,13 @@ Virus Simulation Project - Software Engineering Comp 350
 mainMenu.cs
 Purpose: Will load the main scene.
 
+@author Joshua Steward
+@author Zane Gittins
+@author Zachery Van Es
 @author Lowell Batacan
+@author Jessica Perez
+@author Andrew Walters
+
 @version 1.0 11/7/2016
 */
 
